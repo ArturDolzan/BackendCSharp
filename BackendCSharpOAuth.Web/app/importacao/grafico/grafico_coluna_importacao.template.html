@@ -1,0 +1,51 @@
+﻿<md-dialog style="min-height:400px;">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 flex md-truncate>Categoria</h2>
+            <md-button class="md-icon-button" aria-label="Favorite" ng-click="cancel()">
+                <md-icon md-svg-icon="app/assets/img/cancel-window.svg" class="favorite-icon"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="container" ng-init="graficoColunaCriar()">
+
+            <div class="row">
+                <div class="col-md-6">
+
+                    <md-list>
+                        <md-list-item class="md-3-line" ng-click="null" ng-repeat="importacaoColuna in importacoesColuna">
+
+                            <div class="md-list-item-text">
+                                <h3>{{importacaoColuna.NomeColuna}}</h3>
+                            </div>
+
+                            <div class="md-secondary-container">
+
+                                <md-button class="md-fab md-mini md-primary" ng-click="graficoImportacao($event, importacaoColuna.NomeColuna)" aria-label="Grafico">
+                                    <md-tooltip>Analisar grafico</md-tooltip>
+                                    <md-icon md-svg-src="app/assets/img/line-chart.svg"></md-icon>
+                                </md-button>
+
+
+                                <md-button class="md-fab md-mini test-tooltip" ng-click="graficoImportacaoComparacao($event, importacaoColuna.NomeColuna, importacaoColuna.Id)" aria-label="Grafico">
+                                    <md-tooltip>Comparar mais de uma importacao</md-tooltip>
+                                    <md-icon md-svg-src="app/assets/img/diagram.svg"></md-icon>
+                                </md-button>
+
+                            </div>
+                            <md-divider ng-if="!$last"></md-divider>
+                        </md-list-item>
+                    </md-list>
+
+                </div>
+            </div>
+        </div>
+    </md-dialog-content>
+    <md-progress-circular md-mode="indeterminate" style="display:inline; position:fixed; bottom:50%; left:50%;" ng-show="isLoading"></md-progress-circular>
+    <md-dialog-actions layout="row">
+        <md-button ng-click="cancel()">Fechar</md-button>
+    </md-dialog-actions>
+</md-dialog>

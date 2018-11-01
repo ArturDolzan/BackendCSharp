@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendCSharpOAuth.Aplicacao", "BackendCSharpOAuth.Aplicacao\BackendCSharpOAuth.Aplicacao.csproj", "{155623D0-9442-452B-88F8-1FB5FC0CF46D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendCSharpOAuth.Dominio", "BackendCSharpOAuth.Dominio\BackendCSharpOAuth.Dominio.csproj", "{EDF2759D-AF53-40B3-B938-DABAE6285F7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendCSharpOAuth.Infra", "BackendCSharpOAuth.Infra\BackendCSharpOAuth.Infra.csproj", "{6167184A-ECC8-4F99-95A7-1A08F7B816F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendCSharpOAuth.Repositorio", "BackendCSharpOAuth.Repositorio\BackendCSharpOAuth.Repositorio.csproj", "{53974340-35B3-4AF5-999E-E10D98FD305A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendCSharpOAuth.IoC", "BackendCSharpOAuth.IoC\BackendCSharpOAuth.IoC.csproj", "{DF31223D-25A2-4823-A62C-1D62CE73AC3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendCSharpOAuth.Api", "BackendCSharpOAuth.Api\BackendCSharpOAuth.Api.csproj", "{AC68C212-8168-4A30-8759-EC45ED371476}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendCSharpOAuth.Web", "BackendCSharpOAuth.Web\BackendCSharpOAuth.Web.csproj", "{F3F54C7D-1DD2-4471-A25D-99E8BA04035B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{155623D0-9442-452B-88F8-1FB5FC0CF46D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{155623D0-9442-452B-88F8-1FB5FC0CF46D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{155623D0-9442-452B-88F8-1FB5FC0CF46D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{155623D0-9442-452B-88F8-1FB5FC0CF46D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDF2759D-AF53-40B3-B938-DABAE6285F7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDF2759D-AF53-40B3-B938-DABAE6285F7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDF2759D-AF53-40B3-B938-DABAE6285F7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDF2759D-AF53-40B3-B938-DABAE6285F7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6167184A-ECC8-4F99-95A7-1A08F7B816F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6167184A-ECC8-4F99-95A7-1A08F7B816F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6167184A-ECC8-4F99-95A7-1A08F7B816F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6167184A-ECC8-4F99-95A7-1A08F7B816F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53974340-35B3-4AF5-999E-E10D98FD305A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53974340-35B3-4AF5-999E-E10D98FD305A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53974340-35B3-4AF5-999E-E10D98FD305A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53974340-35B3-4AF5-999E-E10D98FD305A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF31223D-25A2-4823-A62C-1D62CE73AC3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF31223D-25A2-4823-A62C-1D62CE73AC3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF31223D-25A2-4823-A62C-1D62CE73AC3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF31223D-25A2-4823-A62C-1D62CE73AC3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC68C212-8168-4A30-8759-EC45ED371476}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC68C212-8168-4A30-8759-EC45ED371476}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC68C212-8168-4A30-8759-EC45ED371476}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC68C212-8168-4A30-8759-EC45ED371476}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3F54C7D-1DD2-4471-A25D-99E8BA04035B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3F54C7D-1DD2-4471-A25D-99E8BA04035B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3F54C7D-1DD2-4471-A25D-99E8BA04035B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3F54C7D-1DD2-4471-A25D-99E8BA04035B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.Interception.2.1.505.0\lib\NET35
+		SolutionGuid = {1BE7426D-3203-4E82-96B2-CE425D587FC5}
+	EndGlobalSection
+EndGlobal

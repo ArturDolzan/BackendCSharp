@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Tuka - Eletric Car</title>
+
+    <!-- angular material style sheet -->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+
+    <!-- roboto font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+
+    <!-- include custom CSS -->
+    <link href="app/assets/css/custom.css" rel="stylesheet" />
+
+    <link rel="icon" href="app/assets/img/lightning-electric-energy.png">
+
+</head>
+<body>
+
+    <script src="Scripts/angular.js"></script>
+
+    <script src="Scripts/angular-animate.js"></script>
+    <script src="Scripts/angular-route.js"></script>
+    <script src="Scripts/angular-aria.min.js"></script>
+    <script src="Scripts/angular-messages.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <script src="Scripts/AngularUI/ui-router.js"></script>
+
+    <script src="Scripts/angular-material.js"></script>
+    <script src="Scripts/dist.min.js"></script>
+    <script src="Scripts/moment.js"></script>
+    <script src="Scripts/jquery-3.3.1.js"></script>
+    <script src="Scripts/highcharts.src.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/offline-exporting.js"></script>
+
+    <script src="empconfig.js"></script>
+
+    <script type="text/javascript">
+        angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
+    </script>
+
+
+    <script src="app/app.js"></script>
+
+    <div class="container" ng-app="myApp">
+        <div ng-controller="AppCtrl" ng-cloak="" class="navBardemoBasicUsage main">
+            <md-content class="md-padding">
+                <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+
+                    <md-nav-item md-nav-href="dashboard" name="dashboard">Dashboard</md-nav-item>
+                    <md-nav-item md-nav-href="carros" name="carros">Carros</md-nav-item>
+                    <md-nav-item md-nav-href="importacao" name="importacao">Importações</md-nav-item>
+                </md-nav-bar>
+                <div ng-view></div>
+            </md-content>
+        </div>
+    </div>
+
+    <script src="app/carros/carros.controller.js"></script>
+    <script src="app/carros/carros.factory.js"></script>
+
+    <script src="app/importacao/importacao.controller.js"></script>
+    <script src="app/importacao/importacao.factory.js"></script>
+
+    <script src="app/dashboard/dashboard.controller.js"></script>
+    <script src="app/dashboard/dashboard.factory.js"></script>
+
+</body>
+
+</html>
