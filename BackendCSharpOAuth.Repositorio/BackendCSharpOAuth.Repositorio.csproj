@@ -59,6 +59,7 @@
     <Compile Include="Configuracao\CarrosConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepCarros.cs" />
+    <Compile Include="Base\RepositorioBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BackendCSharpOAuth.Dominio\BackendCSharpOAuth.Dominio.csproj">
