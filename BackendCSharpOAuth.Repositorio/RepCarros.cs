@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BackendCSharpOAuth.Repositorio
 {
-    public class RepCarros : RepositorioBase, IRepCarros
+    public class RepCarros : RepositorioBase<Carros>, IRepCarros
     {
         public List<Carros> Listar(QueryPaginacaoDTO dto)
         {
@@ -59,5 +59,7 @@ namespace BackendCSharpOAuth.Repositorio
 
             return registro;
         }
+
+       
     }
 }

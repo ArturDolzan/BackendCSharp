@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BackendCSharpOAuth.Repositorio.Base
 {
-    public class RepositorioBase
+    public class RepositorioBase<T> : IRepositorioBase<T>
     {
         public BancoContext _entidades;
         public BancoContext entidades
@@ -21,6 +21,9 @@ namespace BackendCSharpOAuth.Repositorio.Base
             }
         }
 
-       
+       // public IQueryable<T> Recuperar(string includes) where T : class
+      //  {
+      //      return entidades.Set<T>().AsQueryable<T>();
+      //  }
     }
 }
