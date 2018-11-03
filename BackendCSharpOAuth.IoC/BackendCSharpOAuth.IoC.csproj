@@ -71,10 +71,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BackendCSharpOAuth.Aplicacao\BackendCSharpOAuth.Aplicacao.csproj">
-      <Project>{155623d0-9442-452b-88f8-1fb5fc0cf46d}</Project>
-      <Name>BackendCSharpOAuth.Aplicacao</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BackendCSharpOAuth.Dominio\BackendCSharpOAuth.Dominio.csproj">
       <Project>{edf2759d-af53-40b3-b938-dabae6285f7a}</Project>
       <Name>BackendCSharpOAuth.Dominio</Name>

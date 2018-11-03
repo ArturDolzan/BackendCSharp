@@ -8,8 +8,8 @@ namespace BackendCSharpOAuth.Repositorio.Base
 {
     public class RepositorioBase
     {
-        private BancoContext _entidades;
-        protected BancoContext entidades
+        public BancoContext _entidades;
+        public BancoContext entidades
         {
             get
             {
@@ -21,9 +21,6 @@ namespace BackendCSharpOAuth.Repositorio.Base
             }
         }
 
-        public BancoContext GetRepositorio()
-        {
-            return entidades;
-        }
+       
     }
 }

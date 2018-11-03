@@ -13,6 +13,7 @@ namespace BackendCSharpOAuth.Dominio
         public ServCarros(IRepCarros repCarros)
         {
             _repCarros = repCarros;
+            //_repCarros.enti
         }
 
         public List<Carros> Listar(QueryPaginacaoDTO dto)
@@ -22,6 +23,7 @@ namespace BackendCSharpOAuth.Dominio
 
         public Carros Salvar(Carros carros)
         {
+            
             return _repCarros.Salvar(carros);
         }
 

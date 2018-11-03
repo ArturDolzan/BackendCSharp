@@ -39,7 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Carros\IAplicCarros.cs" />
     <Compile Include="Carros\IRepCarros.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Carros\Carros.cs" />

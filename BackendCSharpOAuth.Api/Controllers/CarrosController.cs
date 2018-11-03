@@ -16,11 +16,11 @@ namespace BackendCSharpOAuth.Api.Controllers
     #endif
     public class CarrosController : ApiController
     {
-        private readonly IAplicCarros _aplicCarros;
+        private readonly IServCarros _servCarros;
 
-        public CarrosController(IAplicCarros aplicCarros)
+        public CarrosController(IServCarros servCarros)
         {
-            _aplicCarros = aplicCarros;
+            _servCarros = servCarros;
         }
 
         [HttpPost]
@@ -28,7 +28,7 @@ namespace BackendCSharpOAuth.Api.Controllers
         {
             try
             {
-                var ret = _aplicCarros.Listar(dto);
+                var ret = _servCarros.Listar(dto);
 
                 return Request.CreateResponse(HttpStatusCode.OK, new { Mensagem = "Registros recuperados com sucesso!", Content = ret });
             }
@@ -43,7 +43,7 @@ namespace BackendCSharpOAuth.Api.Controllers
         {
             try
             {
-                var retorno = _aplicCarros.Salvar(carros);
+                var retorno = _servCarros.Salvar(carros);
 
                 return Request.CreateResponse(HttpStatusCode.OK, new { Content = retorno, Mensagem = "Registro salvo com sucesso!" });
             }

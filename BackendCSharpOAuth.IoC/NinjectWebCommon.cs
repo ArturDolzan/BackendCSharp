@@ -8,7 +8,6 @@ using Ninject.Web.Common.WebHost;
 
 using BackendCSharpOAuth.Dominio;
 using BackendCSharpOAuth.Repositorio;
-using BackendCSharpOAuth.Aplicacao;
 
 //[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(ExemploAccessToken.App_Start.NinjectWebCommon), "Start")]
 //[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(ExemploAccessToken.App_Start.NinjectWebCommon), "Stop")]
@@ -74,7 +73,6 @@ namespace BackendCSharpOAuth.IoC.App_Start
         {
             kernel.Bind<IServCarros>().To<ServCarros>();
             kernel.Bind<IRepCarros>().To<RepCarros>();
-            kernel.Bind<IAplicCarros>().To<AplicCarros>();
         }        
     }
 }

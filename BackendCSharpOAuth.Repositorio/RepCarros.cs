@@ -21,32 +21,40 @@ namespace BackendCSharpOAuth.Repositorio
         public Carros Salvar(Carros carros)
         {
             var registro = entidades.Carros.FirstOrDefault(x => x.Id == carros.Id);
-            
-            if (registro == null)
+
+            using (var transaction = entidades.Database.BeginTransaction())
             {
-                try
+
+                if (registro == null)
                 {
-                    entidades.Carros.Add(carros);
-                    entidades.SaveChanges();
+                    try
+                    {
+                        registro = entidades.Carros.Add(carros);
+                        entidades.SaveChanges();
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception(e.InnerException.InnerException.Message);
+                    }
+                
                 }
-                catch (Exception e)
+                else
                 {
-                    throw new Exception(e.InnerException.InnerException.Message);
+                    registro.Descricao = carros.Descricao;
+                    registro.Ativo = carros.Ativo;
+
+                    try
+                    {
+                        entidades.SaveChanges();
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception(e.InnerException.InnerException.Message);
+                    }
+
                 }
-
-                return carros;
-            }
-
-            registro.Descricao = carros.Descricao;
-            registro.Ativo = carros.Ativo;
-
-            try
-            {
-                entidades.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.InnerException.InnerException.Message);
+                
+                transaction.Commit();
             }
 
             return registro;

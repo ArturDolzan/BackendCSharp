@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendCSharpOAuth.Aplicacao", "BackendCSharpOAuth.Aplicacao\BackendCSharpOAuth.Aplicacao.csproj", "{155623D0-9442-452B-88F8-1FB5FC0CF46D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendCSharpOAuth.Dominio", "BackendCSharpOAuth.Dominio\BackendCSharpOAuth.Dominio.csproj", "{EDF2759D-AF53-40B3-B938-DABAE6285F7A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendCSharpOAuth.Infra", "BackendCSharpOAuth.Infra\BackendCSharpOAuth.Infra.csproj", "{6167184A-ECC8-4F99-95A7-1A08F7B816F5}"
@@ -23,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{155623D0-9442-452B-88F8-1FB5FC0CF46D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{155623D0-9442-452B-88F8-1FB5FC0CF46D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{155623D0-9442-452B-88F8-1FB5FC0CF46D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{155623D0-9442-452B-88F8-1FB5FC0CF46D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EDF2759D-AF53-40B3-B938-DABAE6285F7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EDF2759D-AF53-40B3-B938-DABAE6285F7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDF2759D-AF53-40B3-B938-DABAE6285F7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -56,7 +50,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.Interception.2.1.505.0\lib\NET35
 		SolutionGuid = {1BE7426D-3203-4E82-96B2-CE425D587FC5}
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.Interception.2.1.505.0\lib\NET35
 	EndGlobalSection
 EndGlobal

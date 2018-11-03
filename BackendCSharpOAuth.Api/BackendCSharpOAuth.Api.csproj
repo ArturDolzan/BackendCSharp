@@ -126,9 +126,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Ninject.WebApi.DependencyResolver.0.1.4758.24814\lib\net45\Ninject.WebApi.DependencyResolver.dll</HintPath>
     </Reference>
-    <Reference Include="NinjectAdapter">
-      <HintPath>..\packages\CommonServiceLocator.NinjectAdapter.1.0.0.0\lib\NinjectAdapter.dll</HintPath>
-    </Reference>
     <Reference Include="Npgsql, Version=3.2.7.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Npgsql.2.2.7\lib\net45\Npgsql.dll</HintPath>
@@ -250,10 +247,6 @@
     <Folder Include="Infra\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BackendCSharpOAuth.Aplicacao\BackendCSharpOAuth.Aplicacao.csproj">
-      <Project>{155623d0-9442-452b-88f8-1fb5fc0cf46d}</Project>
-      <Name>BackendCSharpOAuth.Aplicacao</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BackendCSharpOAuth.Dominio\BackendCSharpOAuth.Dominio.csproj">
       <Project>{edf2759d-af53-40b3-b938-dabae6285f7a}</Project>
       <Name>BackendCSharpOAuth.Dominio</Name>
