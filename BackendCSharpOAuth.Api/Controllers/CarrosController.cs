@@ -7,6 +7,7 @@ using System.Web.Http.Description;
 using System.Net.Http;
 using System;
 using BackendCSharpOAuth.Dominio;
+using BackendCSharpOAuth.Infra.DTOs;
 
 namespace BackendCSharpOAuth.Api.Controllers
 {
@@ -22,100 +23,116 @@ namespace BackendCSharpOAuth.Api.Controllers
             _aplicCarros = aplicCarros;
         }
 
-        public HttpResponseMessage Teste()
-        {
-            try
-            {
-                _aplicCarros.Teste();
-
-                return Request.CreateResponse(HttpStatusCode.OK, new { Mensagem = "Teste!" });
-            }
-            catch (System.Exception e)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Mensagem = e.Message });
-            }
-        }
-
-       /* private readonly IServCarros _servCarros;
-
-        public CarrosController(IServCarros servCarros)
-        {
-            _servCarros = servCarros;
-        }
-
-        public HttpResponseMessage Pesquisar(PesquisaDTO dto)
-        {
-            try
-            {
-
-                var carros = _servCarros.PesquisarCarro(dto);
-                var totalRegistros = _servCarros.RecuperarTotalRegistrosFiltro(dto);
-
-                return Request.CreateResponse(HttpStatusCode.OK, new { Content = carros, Quantidade = totalRegistros, Mensagem = "Registros recuperados com sucesso!" });
-            }
-            catch (System.Exception e)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Mensagem = e.Message });
-            }
-        }
-        
+        [HttpPost]
         public HttpResponseMessage Listar(QueryPaginacaoDTO dto)
         {
             try
             {
+                var ret = _aplicCarros.Listar(dto);
 
-                var carros = _servCarros.Listar(dto);
-                var totalRegistros = _servCarros.RecuperarTotalRegistros();
-
-                return Request.CreateResponse(HttpStatusCode.OK, new { Content = carros, Quantidade = totalRegistros, Mensagem = "Registros recuperados com sucesso!" });
+                return Request.CreateResponse(HttpStatusCode.OK, new { Mensagem = "Registros recuperados com sucesso!", Content = ret });
             }
             catch (System.Exception e)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new { Mensagem = e.Message });
-            }            
+            }
         }
 
+        [HttpPost]
         public HttpResponseMessage Salvar(Carros carros)
         {
             try
             {
-                var retorno = _servCarros.Salvar(carros);
+                var retorno = _aplicCarros.Salvar(carros);
 
                 return Request.CreateResponse(HttpStatusCode.OK, new { Content = retorno, Mensagem = "Registro salvo com sucesso!" });
             }
             catch (System.Exception e)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new { Mensagem = e.Message });
-            }            
-        }
-
-        public HttpResponseMessage RecuperarPorId(CodigoPadraoDTO dto)
-        {
-            try
-            {
-                var retorno = _servCarros.RecuperarPorId(dto);
-
-                return Request.CreateResponse(HttpStatusCode.OK, new { Content = retorno, Mensagem = "Registro recuperado com sucesso!" });
-            }
-            catch (System.Exception e)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Mensagem = e.Message });
             }
         }
 
-        public HttpResponseMessage Remover(CodigoPadraoDTO dto)
-        {
-            try
-            {
-                _servCarros.Remover(dto);
+        /* private readonly IServCarros _servCarros;
 
-                return Request.CreateResponse(HttpStatusCode.OK, new { Mensagem = "Registro removido com sucesso!" });
-            }
-            catch (System.Exception e)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Mensagem = e.Message });
-            }
-        }
-        */
+         public CarrosController(IServCarros servCarros)
+         {
+             _servCarros = servCarros;
+         }
+
+         public HttpResponseMessage Pesquisar(PesquisaDTO dto)
+         {
+             try
+             {
+
+                 var carros = _servCarros.PesquisarCarro(dto);
+                 var totalRegistros = _servCarros.RecuperarTotalRegistrosFiltro(dto);
+
+                 return Request.CreateResponse(HttpStatusCode.OK, new { Content = carros, Quantidade = totalRegistros, Mensagem = "Registros recuperados com sucesso!" });
+             }
+             catch (System.Exception e)
+             {
+                 return Request.CreateResponse(HttpStatusCode.BadRequest, new { Mensagem = e.Message });
+             }
+         }
+
+         public HttpResponseMessage Listar(QueryPaginacaoDTO dto)
+         {
+             try
+             {
+
+                 var carros = _servCarros.Listar(dto);
+                 var totalRegistros = _servCarros.RecuperarTotalRegistros();
+
+                 return Request.CreateResponse(HttpStatusCode.OK, new { Content = carros, Quantidade = totalRegistros, Mensagem = "Registros recuperados com sucesso!" });
+             }
+             catch (System.Exception e)
+             {
+                 return Request.CreateResponse(HttpStatusCode.BadRequest, new { Mensagem = e.Message });
+             }            
+         }
+
+         public HttpResponseMessage Salvar(Carros carros)
+         {
+             try
+             {
+                 var retorno = _servCarros.Salvar(carros);
+
+                 return Request.CreateResponse(HttpStatusCode.OK, new { Content = retorno, Mensagem = "Registro salvo com sucesso!" });
+             }
+             catch (System.Exception e)
+             {
+                 return Request.CreateResponse(HttpStatusCode.BadRequest, new { Mensagem = e.Message });
+             }            
+         }
+
+         public HttpResponseMessage RecuperarPorId(CodigoPadraoDTO dto)
+         {
+             try
+             {
+                 var retorno = _servCarros.RecuperarPorId(dto);
+
+                 return Request.CreateResponse(HttpStatusCode.OK, new { Content = retorno, Mensagem = "Registro recuperado com sucesso!" });
+             }
+             catch (System.Exception e)
+             {
+                 return Request.CreateResponse(HttpStatusCode.BadRequest, new { Mensagem = e.Message });
+             }
+         }
+
+         public HttpResponseMessage Remover(CodigoPadraoDTO dto)
+         {
+             try
+             {
+                 _servCarros.Remover(dto);
+
+                 return Request.CreateResponse(HttpStatusCode.OK, new { Mensagem = "Registro removido com sucesso!" });
+             }
+             catch (System.Exception e)
+             {
+                 return Request.CreateResponse(HttpStatusCode.BadRequest, new { Mensagem = e.Message });
+             }
+         }
+         */
     }
 }

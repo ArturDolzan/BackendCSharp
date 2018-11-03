@@ -20,5 +20,10 @@ namespace BackendCSharpOAuth.Repositorio.Base
                 return _entidades;
             }
         }
+
+        public BancoContext GetRepositorio()
+        {
+            return entidades;
+        }
     }
 }

@@ -8,7 +8,8 @@ namespace BackendCSharpOAuth.Dominio
 {
     public interface IServCarros
     {
-        void Teste();
+        List<Carros> Listar(QueryPaginacaoDTO dto);
+        Carros Salvar(Carros carros);
        /* List<Carros> PesquisarCarro(PesquisaDTO dto);
         TotalPaginacaoDTO RecuperarTotalRegistros();
         TotalPaginacaoDTO RecuperarTotalRegistrosFiltro(PesquisaDTO dto);

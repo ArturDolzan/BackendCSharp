@@ -1,4 +1,5 @@
 ﻿using BackendCSharpOAuth.Dominio;
+using BackendCSharpOAuth.Infra.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,15 @@ namespace BackendCSharpOAuth.Aplicacao
             _servCarros = servCarros;
         }
 
-        public void Teste()
+        public List<Carros> Listar(QueryPaginacaoDTO dto)
         {
-            _servCarros.Teste();
+            return _servCarros.Listar(dto);
+        }
+
+        public Carros Salvar(Carros carros)
+        {
+           
+            return _servCarros.Salvar(carros);
         }
     }
 }

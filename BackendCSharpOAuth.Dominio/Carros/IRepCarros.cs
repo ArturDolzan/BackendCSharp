@@ -10,5 +10,6 @@ namespace BackendCSharpOAuth.Dominio
     public interface IRepCarros
     {
         List<Carros> Listar(QueryPaginacaoDTO dto);
+        Carros Salvar(Carros carros);
     }
 }
