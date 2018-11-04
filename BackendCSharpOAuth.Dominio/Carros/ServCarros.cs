@@ -13,19 +13,15 @@ namespace BackendCSharpOAuth.Dominio
         public ServCarros(IRepCarros repCarros)
         {
             _repCarros = repCarros;
-            //_repCarros.
-
-           // var ent = _repCarros.entidades;
         }
 
         public List<Carros> Listar(QueryPaginacaoDTO dto)
         {
-            return _repCarros.Listar(dto);
+            return _repCarros.Recuperar().ToList();   
         }
 
         public Carros Salvar(Carros carros)
         {
-            
             return _repCarros.Salvar(carros);
         }
 

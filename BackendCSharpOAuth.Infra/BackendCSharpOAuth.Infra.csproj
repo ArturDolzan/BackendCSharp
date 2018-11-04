@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\IRepositorioBase.cs" />
     <Compile Include="DTOs\CodigoPadraoDTO.cs" />
     <Compile Include="DTOs\PesquisaDTO.cs" />
     <Compile Include="DTOs\QueryPaginacaoDTO.cs" />

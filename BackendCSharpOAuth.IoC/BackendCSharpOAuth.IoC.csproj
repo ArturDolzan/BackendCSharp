@@ -75,6 +75,10 @@
       <Project>{edf2759d-af53-40b3-b938-dabae6285f7a}</Project>
       <Name>BackendCSharpOAuth.Dominio</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BackendCSharpOAuth.Infra\BackendCSharpOAuth.Infra.csproj">
+      <Project>{6167184A-ECC8-4F99-95A7-1A08F7B816F5}</Project>
+      <Name>BackendCSharpOAuth.Infra</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BackendCSharpOAuth.Repositorio\BackendCSharpOAuth.Repositorio.csproj">
       <Project>{53974340-35b3-4af5-999e-e10d98fd305a}</Project>
       <Name>BackendCSharpOAuth.Repositorio</Name>
