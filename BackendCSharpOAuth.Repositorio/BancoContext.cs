@@ -10,6 +10,8 @@ namespace BackendCSharpOAuth.Repositorio
         public BancoContext()
             : base("BancoContext")
         {
+            Database.SetInitializer<BancoContext>(null);
+
             Database.Log = (p => Debug.WriteLine(p));
         }
 

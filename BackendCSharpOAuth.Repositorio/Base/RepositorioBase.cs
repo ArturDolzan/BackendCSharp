@@ -9,8 +9,9 @@ namespace BackendCSharpOAuth.Repositorio.Base
 {
     public abstract class RepositorioBase<TEntidade> : IRepositorioBase<TEntidade> where TEntidade: class 
     {
-        public BancoContext _entidades;
-        public BancoContext entidades
+        #region contexto
+        private BancoContext _entidades;
+        protected BancoContext entidades
         {
             get
             {
@@ -21,7 +22,9 @@ namespace BackendCSharpOAuth.Repositorio.Base
                 return _entidades;
             }
         }
+        #endregion
 
+        #region recuperar
         public virtual IQueryable<TEntidade> Recuperar()
         {
             return entidades.Set<TEntidade>().AsQueryable<TEntidade>();
@@ -48,8 +51,8 @@ namespace BackendCSharpOAuth.Repositorio.Base
             else
             {
                 return entidades.Set<TEntidade>().AsNoTracking().Include(inc).AsQueryable<TEntidade>();
-            }
-            
+            } 
         }
+        #endregion
     }
 }
