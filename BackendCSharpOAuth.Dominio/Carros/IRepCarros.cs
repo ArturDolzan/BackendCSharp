@@ -10,6 +10,5 @@ namespace BackendCSharpOAuth.Dominio
 {
     public interface IRepCarros : IRepositorioBase<Carros>
     {
-        Carros Salvar(Carros carros);
     }
 }
