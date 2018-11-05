@@ -2,30 +2,66 @@
 using BackendCSharpOAuth.Repositorio.Models.Configuracao;
 using System.Data.Entity;
 using System.Diagnostics;
+using System.Reflection;
+using System.Linq;
+using System;
+using BackendCSharpOAuth.Repositorio.Configuracao;
 
 namespace BackendCSharpOAuth.Repositorio
 {
-    public class BancoContext : DbContext
+    public class BancoContext<TEntidade> : DbContext, IUnidadeDeTrabalho<TEntidade> where TEntidade : class
     {
+        public DbSet<TEntidade> Entidade
+        {
+            get;
+            set;
+        }
+
         public BancoContext()
             : base("BancoContext")
         {
-            Database.SetInitializer<BancoContext>(null);
+            Database.SetInitializer<BancoContext<TEntidade>>(null);
 
             Database.Log = (p => Debug.WriteLine(p));
         }
-
-        public DbSet<Carros> Carros { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             
             modelBuilder.HasDefaultSchema("public");
 
-            modelBuilder.Configurations.Add(new CarrosConfig());
+            //Fazendo o mapeamento com o banco de dados
+            //Pega todas as classes que estão implementando a interface IMapping
+            var typesToMapping = (from x in Assembly.GetExecutingAssembly().GetTypes()
+                                  where x.IsClass && typeof(IMapping).IsAssignableFrom(x)
+                                  select x).ToList();
 
-            base.OnModelCreating(modelBuilder);
-           
+
+            // Varrendo todos os tipos que são mapeamento 
+            foreach (var mapping in typesToMapping)
+            {
+                dynamic mappingClass = Activator.CreateInstance(mapping);
+                modelBuilder.Configurations.Add(mappingClass);
+            }
+
+            /*modelBuilder.Configurations.Add(new CarrosConfig());
+
+            base.OnModelCreating(modelBuilder);*/    
+        }
+
+        public virtual int PersistirTransacao()
+        {
+            return this.SaveChanges();
+        }
+
+        public virtual void RejeitarTransacao()
+        {
+            // Implementar
+        }
+
+        public virtual DbContextTransaction CriarTransacaoEmEscopo()
+        {
+            return this.Database.BeginTransaction();
         }
 
     }

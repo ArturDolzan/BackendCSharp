@@ -1,4 +1,5 @@
 ﻿using BackendCSharpOAuth.Dominio;
+using BackendCSharpOAuth.Repositorio.Configuracao;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
@@ -7,7 +8,7 @@ using System.Web;
 
 namespace BackendCSharpOAuth.Repositorio.Models.Configuracao
 {
-    public class CarrosConfig : EntityTypeConfiguration<Carros>
+    public class CarrosConfig : EntityTypeConfiguration<Carros>, IMapping
     {
         public CarrosConfig()
         {

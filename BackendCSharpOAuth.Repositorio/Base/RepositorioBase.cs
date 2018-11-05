@@ -1,4 +1,5 @@
-﻿using BackendCSharpOAuth.Infra.Base;
+﻿using BackendCSharpOAuth.Dominio;
+using BackendCSharpOAuth.Dominio.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,27 +8,12 @@ using System.Threading.Tasks;
 
 namespace BackendCSharpOAuth.Repositorio.Base
 {
-    public abstract class RepositorioBase<TEntidade> : IRepositorioBase<TEntidade> where TEntidade: class 
-    {
-        #region contexto
-        private BancoContext _entidades;
-        protected BancoContext entidades
-        {
-            get
-            {
-                if (_entidades == null)
-                {
-                    _entidades = new BancoContext();
-                }
-                return _entidades;
-            }
-        }
-        #endregion
-
+    public class RepositorioBase<TEntidade> : BancoContext<TEntidade>, IRepositorioBase<TEntidade> where TEntidade: class 
+    {      
         #region recuperar
         public virtual IQueryable<TEntidade> Recuperar()
         {
-            return entidades.Set<TEntidade>().AsQueryable<TEntidade>();
+            return Entidade.AsQueryable<TEntidade>();
         }
 
         public IQueryable<TEntidade> Recuperar(string includes)
@@ -37,7 +23,7 @@ namespace BackendCSharpOAuth.Repositorio.Base
                 return RecuperarAsNoTracking(includes);
             }
 
-            return entidades.Set<TEntidade>().Include(includes).AsQueryable<TEntidade>();
+            return Entidade.Include(includes).AsQueryable<TEntidade>();
         }
 
         private IQueryable<TEntidade> RecuperarAsNoTracking(string includes)
@@ -46,11 +32,11 @@ namespace BackendCSharpOAuth.Repositorio.Base
 
             if (string.IsNullOrEmpty(inc))
             {
-                return entidades.Set<TEntidade>().AsNoTracking().AsQueryable<TEntidade>();
+                return Entidade.AsNoTracking().AsQueryable<TEntidade>();
             }
             else
             {
-                return entidades.Set<TEntidade>().AsNoTracking().Include(inc).AsQueryable<TEntidade>();
+                return Entidade.AsNoTracking().Include(inc).AsQueryable<TEntidade>();
             } 
         }
         #endregion

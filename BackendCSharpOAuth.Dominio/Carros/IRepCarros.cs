@@ -1,4 +1,4 @@
-﻿using BackendCSharpOAuth.Infra.Base;
+﻿using BackendCSharpOAuth.Dominio.Base;
 using BackendCSharpOAuth.Infra.DTOs;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,6 @@ namespace BackendCSharpOAuth.Dominio
 {
     public interface IRepCarros : IRepositorioBase<Carros>
     {
- 
         Carros Salvar(Carros carros);
     }
 }

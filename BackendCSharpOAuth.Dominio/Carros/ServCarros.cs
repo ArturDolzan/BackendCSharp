@@ -22,7 +22,25 @@ namespace BackendCSharpOAuth.Dominio
 
         public Carros Salvar(Carros carros)
         {
-            return _repCarros.Salvar(carros);
+            var carro = new Carros();
+            
+            using (var transaction = _repCarros.CriarTransacaoEmEscopo())
+            {
+                try
+                {
+                    carro = _repCarros.Salvar(carros);
+                    _repCarros.PersistirTransacao();
+
+                    transaction.Commit();
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    throw new Exception(e.Message);
+                }
+            }
+            
+            return carro;
         }
 
         /*private readonly BancoContext _db;

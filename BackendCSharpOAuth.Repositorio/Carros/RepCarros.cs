@@ -1,6 +1,4 @@
 ﻿using BackendCSharpOAuth.Dominio;
-using BackendCSharpOAuth.Infra;
-using BackendCSharpOAuth.Infra.DTOs;
 using BackendCSharpOAuth.Repositorio.Base;
 using Microsoft.Practices.ServiceLocation;
 using System;
@@ -16,17 +14,15 @@ namespace BackendCSharpOAuth.Repositorio
       
         public Carros Salvar(Carros carros)
         {
-            var registro = entidades.Carros.FirstOrDefault(x => x.Id == carros.Id);
-            
-            using (var transaction = entidades.Database.BeginTransaction())
-            {
+            var registro = Entidade.FirstOrDefault(x => x.Id == carros.Id);
 
+            //using (var transaction = Entidade.BeginTransaction())
+           // {
                 if (registro == null)
                 {
                     try
                     {
-                        registro = entidades.Carros.Add(carros);
-                        entidades.SaveChanges();
+                        registro = Entidade.Add(carros);                        
                     }
                     catch (Exception e)
                     {
@@ -37,20 +33,10 @@ namespace BackendCSharpOAuth.Repositorio
                 else
                 {
                     registro.Descricao = carros.Descricao;
-
-                    try
-                    {
-                        entidades.SaveChanges();
-                    }
-                    catch (Exception e)
-                    {
-                        throw new Exception(e.InnerException.InnerException.Message);
-                    }
-
                 }
                 
-                transaction.Commit();
-            }
+              //  transaction.Commit();
+           // }
 
             return registro;
         }
