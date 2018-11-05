@@ -1,16 +1,13 @@
-﻿using BackendCSharpOAuth.Dominio;
-using BackendCSharpOAuth.Dominio.Base;
+﻿using BackendCSharpOAuth.Dominio.Base;
+using BackendCSharpOAuth.Infra;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BackendCSharpOAuth.Repositorio.Base
 {
-    public class RepositorioBase<TEntidade> : BancoContext<TEntidade>, IRepositorioBase<TEntidade> where TEntidade: class 
+    public class RepositorioBase<TEntidade> : BancoContext<TEntidade>, IRepositorioBase<TEntidade> where TEntidade: IdentificadorBase 
     {      
         #region recuperar
         public virtual IQueryable<TEntidade> Recuperar()
@@ -55,7 +52,16 @@ namespace BackendCSharpOAuth.Repositorio.Base
 
         public virtual TEntidade Salvar(TEntidade entidade)
         {
-            return this.Entidade.Add(entidade);
+            var registro = Recuperar("AsNoTracking").Where(x => x.Id == entidade.Id).FirstOrDefault();
+
+            if (registro == null)
+            {
+                return this.Entidade.Add(entidade);
+            }
+            else
+            {
+                return this.Atualizar(entidade);
+            }
         }
 
         public virtual TEntidade Atualizar(TEntidade entidade)
@@ -72,6 +78,13 @@ namespace BackendCSharpOAuth.Repositorio.Base
 
         public virtual TEntidade Remover(TEntidade entidade)
         {
+            var registro = Recuperar("AsNoTracking").Where(x => x.Id == entidade.Id).FirstOrDefault();
+
+            if (registro == null)
+            {
+                throw new Exception("A entidade nao foi encontrada para remover!");
+            }
+
             var entry = this.Entry(entidade);
 
             if (entry.State == EntityState.Detached)

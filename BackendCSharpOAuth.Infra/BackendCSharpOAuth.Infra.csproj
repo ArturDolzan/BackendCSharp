@@ -43,6 +43,7 @@
     <Compile Include="DTOs\PesquisaDTO.cs" />
     <Compile Include="DTOs\QueryPaginacaoDTO.cs" />
     <Compile Include="DTOs\TotalPaginacaoDTO.cs" />
+    <Compile Include="IdentificadorBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -1,9 +1,10 @@
 ﻿
+using BackendCSharpOAuth.Infra;
+
 namespace BackendCSharpOAuth.Dominio
 {
-    public class Carros
+    public class Carros : IdentificadorBase
     {
-        public int Id { get; set; }
         public string Descricao { get; set; }
     }
 

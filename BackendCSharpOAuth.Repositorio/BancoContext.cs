@@ -2,14 +2,11 @@
 using BackendCSharpOAuth.Repositorio.Models.Configuracao;
 using System.Data.Entity;
 using System.Diagnostics;
-using System.Reflection;
-using System.Linq;
-using System;
-using BackendCSharpOAuth.Repositorio.Configuracao;
+using BackendCSharpOAuth.Infra;
 
 namespace BackendCSharpOAuth.Repositorio
 {
-    public class BancoContext<TEntidade> : DbContext, IUnidadeDeTrabalho<TEntidade> where TEntidade : class
+    public class BancoContext<TEntidade> : DbContext, IUnidadeDeTrabalho<TEntidade> where TEntidade : IdentificadorBase
     {
         public DbSet<TEntidade> Entidade
         {
@@ -32,7 +29,7 @@ namespace BackendCSharpOAuth.Repositorio
 
             //Fazendo o mapeamento com o banco de dados
             //Pega todas as classes que estão implementando a interface IMapping
-            var typesToMapping = (from x in Assembly.GetExecutingAssembly().GetTypes()
+           /* var typesToMapping = (from x in Assembly.GetExecutingAssembly().GetTypes()
                                   where x.IsClass && typeof(IMapping).IsAssignableFrom(x)
                                   select x).ToList();
 
@@ -42,11 +39,11 @@ namespace BackendCSharpOAuth.Repositorio
             {
                 dynamic mappingClass = Activator.CreateInstance(mapping);
                 modelBuilder.Configurations.Add(mappingClass);
-            }
+            }*/
 
-            /*modelBuilder.Configurations.Add(new CarrosConfig());
+            modelBuilder.Configurations.Add(new CarrosConfig());
 
-            base.OnModelCreating(modelBuilder);*/    
+            base.OnModelCreating(modelBuilder);  
         }
 
         public virtual int PersistirTransacao()

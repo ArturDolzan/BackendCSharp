@@ -53,6 +53,21 @@ namespace BackendCSharpOAuth.Api.Controllers
             }
         }
 
+        [HttpPost]
+        public HttpResponseMessage Remover(Carros carros)
+        {
+            try
+            {
+                var retorno = _servCarros.Remover(carros);
+
+                return Request.CreateResponse(HttpStatusCode.OK, new { Content = retorno, Mensagem = "Registro removido com sucesso!" });
+            }
+            catch (System.Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Mensagem = e.Message });
+            }
+        }
+
         /* private readonly IServCarros _servCarros;
 
          public CarrosController(IServCarros servCarros)

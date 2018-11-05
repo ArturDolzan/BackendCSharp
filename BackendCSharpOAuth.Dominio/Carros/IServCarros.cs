@@ -10,6 +10,7 @@ namespace BackendCSharpOAuth.Dominio
     {
         List<Carros> Listar(QueryPaginacaoDTO dto);
         Carros Salvar(Carros carros);
+        Carros Remover(Carros carros);
        /* List<Carros> PesquisarCarro(PesquisaDTO dto);
         TotalPaginacaoDTO RecuperarTotalRegistros();
         TotalPaginacaoDTO RecuperarTotalRegistrosFiltro(PesquisaDTO dto);

@@ -64,6 +64,10 @@
       <Project>{edf2759d-af53-40b3-b938-dabae6285f7a}</Project>
       <Name>BackendCSharpOAuth.Dominio</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BackendCSharpOAuth.Infra\BackendCSharpOAuth.Infra.csproj">
+      <Project>{6167184a-ecc8-4f99-95a7-1a08f7b816f5}</Project>
+      <Name>BackendCSharpOAuth.Infra</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
