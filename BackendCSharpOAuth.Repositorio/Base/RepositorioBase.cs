@@ -41,7 +41,7 @@ namespace BackendCSharpOAuth.Repositorio.Base
         #endregion
 
         #region crud
-        public virtual void ChangeObjectState(object entidade, EntityState state)
+        public void ChangeObjectState(object entidade, EntityState state)
         {
             ((IObjectContextAdapter)this)
                             .ObjectContext
@@ -93,6 +93,11 @@ namespace BackendCSharpOAuth.Repositorio.Base
             ChangeObjectState(entidade, EntityState.Deleted);
 
             return entidade;
+        }
+
+        public virtual TEntidade RecuperarNovo()
+        {
+            return Activator.CreateInstance<TEntidade>();
         }
         #endregion
     }

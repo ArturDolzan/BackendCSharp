@@ -1,4 +1,5 @@
-﻿using BackendCSharpOAuth.Infra.DTOs;
+﻿using BackendCSharpOAuth.Dominio.Base;
+using BackendCSharpOAuth.Infra.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,64 +7,10 @@ using System.Web;
 
 namespace BackendCSharpOAuth.Dominio
 {
-    public class ServCarros : IServCarros
-    {
-        private IRepCarros _repCarros;
-
-        public ServCarros(IRepCarros repCarros)
+    public class ServCarros : ServicoBase<Carros>, IServCarros
+    {        
+        public ServCarros(IRepCarros repositorio): base(repositorio) 
         {
-            _repCarros = repCarros;
-        }
-
-        public List<Carros> Listar(QueryPaginacaoDTO dto)
-        {
-            return _repCarros.Recuperar().ToList();   
-        }
-
-        public Carros Salvar(Carros carros)
-        {
-            var carro = new Carros();
-
-            using (var transaction = _repCarros.CriarTransacaoEmEscopo())
-            {
-                try
-                {
-                    carro = _repCarros.Salvar(carros);
-                    _repCarros.PersistirTransacao();
-
-                    transaction.Commit();
-                }
-                catch (Exception e)
-                {
-                    transaction.Rollback();
-                    throw new Exception(e.Message);
-                }
-            }
-            
-            return carro;
-        }
-
-        public Carros Remover(Carros carros)
-        {
-            var carro = new Carros();
-
-            using (var transaction = _repCarros.CriarTransacaoEmEscopo())
-            {
-                try
-                {
-                    carro = _repCarros.Remover(carros);
-                    _repCarros.PersistirTransacao();
-
-                    transaction.Commit();
-                }
-                catch (Exception e)
-                {
-                    transaction.Rollback();
-                    throw new Exception(e.Message);
-                }
-            }
-
-            return carro;
         }
 
         /*private readonly BancoContext _db;

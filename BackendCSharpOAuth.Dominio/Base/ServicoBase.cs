@@ -10,17 +10,76 @@ namespace BackendCSharpOAuth.Dominio.Base
 {
     public class ServicoBase<TEntidade> : IServicoBase<TEntidade> where TEntidade: IdentificadorBase
     {
-        public IRepositorioBase<TEntidade> _repositorio;
+        private readonly IRepositorioBase<TEntidade> Repositorio;
 
-        public ServicoBase()
+        public ServicoBase(IRepositorioBase<TEntidade> repositorio)
         {
-            //_repositorio = repositorio;
+            Repositorio = repositorio;
         }
 
+        public IRepositorioBase<TEntidade> GetRepositorio()
+        {
+            return Repositorio as IRepositorioBase<TEntidade>;
+        }
+
+        public TRepositorio GetRepositorio<TRepositorio>()
+        {
+            return (TRepositorio)Repositorio;
+        }
+
+        #region recuperar
         public List<TEntidade> Listar(QueryPaginacaoDTO dto)
         {
-            return _repositorio.Recuperar().ToList();
+            return Repositorio.Recuperar().ToList();
         }
-        
+        #endregion
+
+
+        #region crud
+        public TEntidade Salvar(TEntidade entidade)
+        {
+            var ent = new object();
+            using (var transaction = GetRepositorio().CriarTransacaoEmEscopo())
+            {
+                try
+                {
+                    ent = Repositorio.Salvar(entidade);
+                    Repositorio.PersistirTransacao();
+
+                    transaction.Commit();
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    throw new Exception(e.Message);
+                }
+            }
+
+            return (TEntidade)ent;
+        }
+
+        public TEntidade Remover(TEntidade entidade)
+        {
+            var ent = new object();
+            using (var transaction = GetRepositorio().CriarTransacaoEmEscopo())
+            {
+                try
+                {
+                    ent = Repositorio.Remover(entidade);
+                    Repositorio.PersistirTransacao();
+
+                    transaction.Commit();
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    throw new Exception(e.Message);
+                }
+            }
+
+            return (TEntidade)ent;
+        }
+        #endregion
+
     }
 }
