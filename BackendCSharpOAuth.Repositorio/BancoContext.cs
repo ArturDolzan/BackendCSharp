@@ -3,6 +3,7 @@ using BackendCSharpOAuth.Repositorio.Models.Configuracao;
 using System.Data.Entity;
 using System.Diagnostics;
 using BackendCSharpOAuth.Infra;
+using FirebirdSql.Data.FirebirdClient;
 
 namespace BackendCSharpOAuth.Repositorio
 {
@@ -15,7 +16,7 @@ namespace BackendCSharpOAuth.Repositorio
         }
 
         public BancoContext()
-            : base("BancoContext")
+            : base(new FbConnection(@"database=localhost:teste2.fdb;user=sysdba;password=masterkey"), true)
         {
             Database.SetInitializer<BancoContext<TEntidade>>(null);
 
@@ -25,7 +26,7 @@ namespace BackendCSharpOAuth.Repositorio
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             
-            modelBuilder.HasDefaultSchema("public");
+            //modelBuilder.HasDefaultSchema("public");
 
             //Fazendo o mapeamento com o banco de dados
             //Pega todas as classes que estão implementando a interface IMapping
