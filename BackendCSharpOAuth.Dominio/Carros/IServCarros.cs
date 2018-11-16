@@ -8,14 +8,6 @@ using System.Web;
 namespace BackendCSharpOAuth.Dominio
 {
     public interface IServCarros: IServicoBase<Carros>
-    {        
-       /* List<Carros> PesquisarCarro(PesquisaDTO dto);
-        TotalPaginacaoDTO RecuperarTotalRegistros();
-        TotalPaginacaoDTO RecuperarTotalRegistrosFiltro(PesquisaDTO dto);
-        List<Carros> Listar(QueryPaginacaoDTO dto);
-        List<Carros> ListarSearchField();
-        Carros Salvar(Carros carros);
-        Carros RecuperarPorId(CodigoPadraoDTO dto);
-        void Remover(CodigoPadraoDTO dto);*/
+    {            
     }
 }

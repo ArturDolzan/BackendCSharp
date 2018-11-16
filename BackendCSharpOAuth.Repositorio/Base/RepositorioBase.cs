@@ -15,28 +15,58 @@ namespace BackendCSharpOAuth.Repositorio.Base
             return Entidade.AsQueryable<TEntidade>();
         }
 
-        public IQueryable<TEntidade> Recuperar(string includes)
+        public IQueryable<TEntidade> Recuperar(string[] includes)
         {
-            if (includes.ToUpper().Trim().IndexOf("ASNOTRACKING") != -1)
+            var noTrack = includes.Where(x=> string.Format("AsNoTracking").ToUpper().Trim().Contains(x.ToUpper().Trim())).Any();
+
+            if (noTrack)
             {
                 return RecuperarAsNoTracking(includes);
             }
 
-            return Entidade.Include(includes).AsQueryable<TEntidade>();
+            string aincludes = "";
+            foreach (var item in includes)
+            {
+                if (item.ToUpper().Trim() != "ASNOTRACKING")
+                {
+                    if (string.IsNullOrEmpty(aincludes))
+                    {
+                        aincludes = item;
+                    }
+                    else
+                    {
+                        aincludes = aincludes + string.Format(", {0}", item);
+                    }
+                }
+            }
+
+            return Entidade.Include(aincludes).AsQueryable<TEntidade>();
         }
 
-        private IQueryable<TEntidade> RecuperarAsNoTracking(string includes)
+        private IQueryable<TEntidade> RecuperarAsNoTracking(string[] includes)
         {
-            var inc = includes.ToUpper().Trim().Replace("ASNOTRACKING", "");
+            string aincludes = "";
+            foreach (var item in includes)
+            {
+                if (item.ToUpper().Trim() != "ASNOTRACKING")
+                {
+                    if (string.IsNullOrEmpty(aincludes))
+                    {
+                        aincludes = item;
+                    }
+                    else
+                    {
+                        aincludes = aincludes + string.Format(", {0}", item);
+                    }
+                }
+            }
 
-            if (string.IsNullOrEmpty(inc))
+            if (string.IsNullOrEmpty(aincludes))
             {
                 return Entidade.AsNoTracking().AsQueryable<TEntidade>();
             }
-            else
-            {
-                return Entidade.AsNoTracking().Include(inc).AsQueryable<TEntidade>();
-            } 
+
+            return Entidade.AsNoTracking().Include(aincludes).AsQueryable<TEntidade>();
         }
         #endregion
 
@@ -52,7 +82,7 @@ namespace BackendCSharpOAuth.Repositorio.Base
 
         public virtual TEntidade Salvar(TEntidade entidade)
         {
-            var registro = Recuperar("AsNoTracking").Where(x => x.Id == entidade.Id).FirstOrDefault();
+            var registro = Recuperar(new string[] { "AsNoTracking"} ).Where(x => x.Id == entidade.Id).FirstOrDefault();
 
             if (registro == null)
             {
@@ -78,7 +108,7 @@ namespace BackendCSharpOAuth.Repositorio.Base
 
         public virtual TEntidade Remover(TEntidade entidade)
         {
-            var registro = Recuperar("AsNoTracking").Where(x => x.Id == entidade.Id).FirstOrDefault();
+            var registro = Recuperar(new string[] { "AsNoTracking" }).Where(x => x.Id == entidade.Id).FirstOrDefault();
 
             if (registro == null)
             {
