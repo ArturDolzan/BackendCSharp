@@ -15,7 +15,7 @@ namespace BackendCSharpOAuth.Repositorio.Base
             return Entidade.AsQueryable<TEntidade>();
         }
 
-        public IQueryable<TEntidade> Recuperar(string[] includes)
+        public virtual IQueryable<TEntidade> Recuperar(string[] includes)
         {
             var noTrack = includes.Where(x=> string.Format("AsNoTracking").ToUpper().Trim().Contains(x.ToUpper().Trim())).Any();
 
