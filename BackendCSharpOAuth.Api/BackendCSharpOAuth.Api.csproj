@@ -212,7 +212,6 @@
     <Content Include="BulkCopyConfig.xml" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
-    <Content Include="Readme!!!.txt" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="Web.config">
