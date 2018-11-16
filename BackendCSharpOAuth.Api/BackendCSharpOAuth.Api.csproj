@@ -209,7 +209,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\readme.txt" />
-    <Content Include="BulkCopyConfig.xml" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="Scripts\Chart.js" />
