@@ -27,7 +27,7 @@ namespace BackendCSharpOAuth.Api
             if (usuario == null)
             {
                 context.SetError("invalid_grant", 
-                    "Usuário não encontrado um senha incorreta.");
+                    "Usuário não encontrado e/ou senha incorreta.");
                 return;
             }
 
