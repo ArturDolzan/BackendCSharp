@@ -10,6 +10,8 @@ namespace BackendCSharpOAuth.Api.Controllers
     {
         public ActionResult Index()
         {
+           // string myVar = System.Configuration.ConfigurationManager.AppSettings["teste"];
+
             return View();
 
             //return Redirect(this.HttpContext.Request.Url + "/index.html");

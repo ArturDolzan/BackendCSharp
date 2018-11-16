@@ -28,7 +28,7 @@ namespace BackendCSharpOAuth.Dominio.Base
         }
 
         #region recuperar
-        public List<TEntidade> Listar(QueryPaginacaoDTO dto)
+        public virtual List<TEntidade> Listar(QueryPaginacaoDTO dto)
         {
             return Repositorio.Recuperar().ToList();
         }
@@ -36,7 +36,7 @@ namespace BackendCSharpOAuth.Dominio.Base
 
 
         #region crud
-        public TEntidade Salvar(TEntidade entidade)
+        public virtual TEntidade Salvar(TEntidade entidade)
         {
             var ent = new object();
             using (var transaction = GetRepositorio().CriarTransacaoEmEscopo())
@@ -58,7 +58,7 @@ namespace BackendCSharpOAuth.Dominio.Base
             return (TEntidade)ent;
         }
 
-        public TEntidade Remover(TEntidade entidade)
+        public virtual TEntidade Remover(TEntidade entidade)
         {
             var ent = new object();
             using (var transaction = GetRepositorio().CriarTransacaoEmEscopo())
