@@ -1,8 +1,8 @@
 ﻿using BackendCSharpOAuth.Dominio;
-using BackendCSharpOAuth.Repositorio.Models.Configuracao;
 using System.Data.Entity;
 using System.Diagnostics;
 using BackendCSharpOAuth.Infra;
+using BackendCSharpOAuth.Repositorio.Configuracao;
 
 namespace BackendCSharpOAuth.Repositorio
 {
@@ -42,6 +42,7 @@ namespace BackendCSharpOAuth.Repositorio
             }*/
 
             modelBuilder.Configurations.Add(new CarrosConfig());
+            modelBuilder.Configurations.Add(new UsuariosConfig());
 
             base.OnModelCreating(modelBuilder);  
         }

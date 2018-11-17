@@ -6,7 +6,7 @@ using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Web;
 
-namespace BackendCSharpOAuth.Repositorio.Models.Configuracao
+namespace BackendCSharpOAuth.Repositorio.Configuracao
 {
     public class CarrosConfig : EntityTypeConfiguration<Carros>, IMapping
     {

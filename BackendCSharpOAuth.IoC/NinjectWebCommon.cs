@@ -8,14 +8,13 @@ using Ninject.Web.Common.WebHost;
 
 using BackendCSharpOAuth.Dominio;
 using BackendCSharpOAuth.Repositorio;
+using CommonServiceLocator;
 
 //[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(ExemploAccessToken.App_Start.NinjectWebCommon), "Start")]
 //[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(ExemploAccessToken.App_Start.NinjectWebCommon), "Stop")]
 
 namespace BackendCSharpOAuth.IoC.App_Start
 {
-    
-
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -50,11 +49,11 @@ namespace BackendCSharpOAuth.IoC.App_Start
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
-               // System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver = new Ninject.WebApi.DependencyResolver.NinjectDependencyResolver(kernel);
+                //System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver = new Ninject.WebApi.DependencyResolver.NinjectDependencyResolver(kernel);
 
                 RegisterServices(kernel);
 
-                //Microsoft.Practices.ServiceLocation.ServiceLocator.SetLocatorProvider(() => new NinjectServiceLocator(kernel));
+                ServiceLocator.SetLocatorProvider(() => new NinjectServiceLocator(kernel));
 
                 return kernel;
             }
@@ -73,6 +72,13 @@ namespace BackendCSharpOAuth.IoC.App_Start
         {
             kernel.Bind<IServCarros>().To<ServCarros>();
             kernel.Bind<IRepCarros>().To<RepCarros>();
-        }        
+            kernel.Bind<IServUsuarios>().To<ServUsuarios>();
+            kernel.Bind<IRepUsuarios>().To<RepUsuarios>();
+        }
+
+        public static T Resolve<T>()
+        {
+            return (T)ServiceLocator.Current.GetInstance<T>();
+        }
     }
 }
