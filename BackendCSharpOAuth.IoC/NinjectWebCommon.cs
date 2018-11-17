@@ -75,10 +75,5 @@ namespace BackendCSharpOAuth.IoC.App_Start
             kernel.Bind<IServUsuarios>().To<ServUsuarios>();
             kernel.Bind<IRepUsuarios>().To<RepUsuarios>();
         }
-
-        public static T Resolve<T>()
-        {
-            return (T)ServiceLocator.Current.GetInstance<T>();
-        }
     }
 }

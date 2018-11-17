@@ -1,11 +1,8 @@
-﻿using System.Linq;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.Owin.Security.OAuth;
-using BackendCSharpOAuth.Api.Usuarios;
 using BackendCSharpOAuth.Dominio;
-using System.Web.Mvc;
-using BackendCSharpOAuth.IoC.App_Start;
+using BackendCSharpOAuth.Infra;
 
 namespace BackendCSharpOAuth.Api
 {
@@ -21,20 +18,18 @@ namespace BackendCSharpOAuth.Api
         public override async Task GrantResourceOwnerCredentials
             (OAuthGrantResourceOwnerCredentialsContext context)
         {
-
             //var usuario = BaseUsuarios
             //   .Usuarios()
             //   .FirstOrDefault(x => x.Nome == context.UserName
             //                   && x.Senha == context.Password);
 
-            var servUsuarios = NinjectWebCommon.Resolve<IServUsuarios>();
+            var servUsuarios = ServiceLocatorResolver.Resolve<IServUsuarios>();
             var usuario = servUsuarios.RecuperarUsuarioParaToken(context.UserName, context.Password);
             
             // cancelando a emissão do token se o usuário não for encontrado
             if (usuario == null)
             {
-                context.SetError("invalid_grant", 
-                    "Usuário não encontrado e/ou senha incorreta.");
+                context.SetError("invalid_grant", "Usuário não encontrado e/ou senha incorreta.");
                 return;
             }
 
