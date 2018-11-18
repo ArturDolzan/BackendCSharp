@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BackendCSharpOAuth.Infra.Extensao;
 
 namespace BackendCSharpOAuth.Dominio.Base
 {
@@ -51,7 +52,7 @@ namespace BackendCSharpOAuth.Dominio.Base
                 catch (Exception e)
                 {
                     transaction.Rollback();
-                    throw new Exception(e.Message);
+                    throw new Exception(e.TratarErro());
                 }
             }
 
@@ -73,7 +74,7 @@ namespace BackendCSharpOAuth.Dominio.Base
                 catch (Exception e)
                 {
                     transaction.Rollback();
-                    throw new Exception(e.Message);
+                    throw new Exception(e.TratarErro());
                 }
             }
 

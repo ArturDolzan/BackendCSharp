@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using BackendCSharpOAuth.Infra.Extensao;
 
 namespace BackendCSharpOAuth.Api.Controllers.Base
 {
@@ -40,11 +41,11 @@ namespace BackendCSharpOAuth.Api.Controllers.Base
             {
                 var ret = Servico.Listar(dto);
 
-                return Request.CreateResponse(HttpStatusCode.OK, new { Mensagem = "Registros recuperados com sucesso!", Content = ret });
+                return RetornarSucesso("Registros recuperados com sucesso!", ret);
             }
             catch (System.Exception e)
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Mensagem = e.Message });
+                return RetornarErro(e.TratarErro());
             }
         }
 
@@ -55,11 +56,11 @@ namespace BackendCSharpOAuth.Api.Controllers.Base
             {
                 var retorno = Servico.Salvar(entidade);
 
-                return Request.CreateResponse(HttpStatusCode.OK, new { Content = retorno, Mensagem = "Registro salvo com sucesso!" });
+                return RetornarSucesso("Registro salvo com sucesso!");
             }
             catch (System.Exception e)
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Mensagem = e.Message });
+                return RetornarErro(e.TratarErro());
             }
         }
 
@@ -70,12 +71,34 @@ namespace BackendCSharpOAuth.Api.Controllers.Base
             {
                 var retorno = Servico.Remover(entidade);
 
-                return Request.CreateResponse(HttpStatusCode.OK, new { Content = retorno, Mensagem = "Registro removido com sucesso!" });
+                return RetornarSucesso("Registro removido com sucesso!", retorno);
             }
             catch (System.Exception e)
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Mensagem = e.Message });
+                return RetornarErro(e.TratarErro());
             }
         }
+
+        #region Respostas
+        public virtual HttpResponseMessage RetornarSucesso(string mensagem)
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, new { Mensagem = mensagem });
+        }
+
+        public virtual HttpResponseMessage RetornarSucesso(string mensagem, object conteudo)
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, new { Mensagem = mensagem, Content = conteudo });
+        }
+
+        public virtual HttpResponseMessage RetornarErro(string mensagem)
+        {
+            return Request.CreateResponse(HttpStatusCode.BadRequest, new { Mensagem = mensagem });
+        }
+
+        public virtual HttpResponseMessage RetornarErro(string mensagem, object conteudo)
+        {
+            return Request.CreateResponse(HttpStatusCode.BadRequest, new { Mensagem = mensagem, Content = conteudo });
+        }
+        #endregion
     }
 }
