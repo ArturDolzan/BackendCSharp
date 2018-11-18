@@ -56,7 +56,7 @@ namespace BackendCSharpOAuth.Api.Controllers.Base
             {
                 var retorno = Servico.Salvar(entidade);
 
-                return RetornarSucesso("Registro salvo com sucesso!");
+                return RetornarSucesso("Registro salvo com sucesso!", retorno);
             }
             catch (System.Exception e)
             {
