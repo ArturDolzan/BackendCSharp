@@ -5,8 +5,7 @@ using Microsoft.Owin.Cors;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System.Net.Http.Headers;
-using BackendCSharpOAuth.IoC.App_Start;
-using BackendCSharpOAuth.IoC.Ninject;
+using BackendCSharpOAuth.IoC;
 
 [assembly: OwinStartup(typeof(BackendCSharpOAuth.Api.Startup))]
 
@@ -19,9 +18,7 @@ namespace BackendCSharpOAuth.Api
             // configuracao WebApi
             var config = new HttpConfiguration();
 
-            var kernel = NinjectWebCommon.CreateKernel();
-            config.DependencyResolver = new NinjectResolver(kernel);
-
+            config.ConfigureDependencyInjection();
 
             // configurando rotas
             config.MapHttpAttributeRoutes();

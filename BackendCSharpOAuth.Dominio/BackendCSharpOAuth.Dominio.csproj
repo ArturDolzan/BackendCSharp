@@ -47,6 +47,7 @@
     <Compile Include="Base\ServicoBase.cs" />
     <Compile Include="Carros\IRepCarros.cs" />
     <Compile Include="Base\IRepositorioBase.cs" />
+    <Compile Include="Infra\DomainBotstrap.cs" />
     <Compile Include="IUnidadeDeTrabalho.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Carros\Carros.cs" />

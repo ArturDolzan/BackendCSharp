@@ -57,6 +57,7 @@
     <Compile Include="Configuracao\CarrosConfig.cs" />
     <Compile Include="Configuracao\IMapping.cs" />
     <Compile Include="Configuracao\UsuariosConfig.cs" />
+    <Compile Include="Infra\RepBotstrap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Carros\RepCarros.cs" />
     <Compile Include="Usuarios\RepUsuarios.cs" />
