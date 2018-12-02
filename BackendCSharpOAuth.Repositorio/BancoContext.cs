@@ -44,6 +44,8 @@ namespace BackendCSharpOAuth.Repositorio
             modelBuilder.Configurations.Add(new CarrosConfig());
             modelBuilder.Configurations.Add(new UsuariosConfig());
 
+            modelBuilder.Configurations.Add(new MateriaisConfig());
+
             base.OnModelCreating(modelBuilder);  
         }
 
