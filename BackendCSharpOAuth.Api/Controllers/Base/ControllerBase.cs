@@ -35,8 +35,9 @@ namespace BackendCSharpOAuth.Api.Controllers.Base
             try
             {
                 var ret = Servico.Listar(dto);
+                var total = Servico.RecuperarTotal();
 
-                return RetornarSucesso("Registros recuperados com sucesso!", ret);
+                return RetornarSucesso("Registros recuperados com sucesso!", new { Dados = ret, Total = total});
             }
             catch (System.Exception e)
             {

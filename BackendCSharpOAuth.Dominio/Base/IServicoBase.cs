@@ -13,5 +13,6 @@ namespace BackendCSharpOAuth.Dominio.Base
         List<TEntidade> Listar(QueryPaginacaoDTO dto);
         TEntidade Salvar(TEntidade entidade);
         TEntidade Remover(TEntidade entidade);
+        int RecuperarTotal();
     }
 }
