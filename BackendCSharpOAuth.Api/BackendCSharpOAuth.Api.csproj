@@ -201,10 +201,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\readme.txt" />
+    <Content Include="Images\shopping-cart.png" />
+    <Content Include="login.html" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
+    <Content Include="Scripts\js.cookie.js" />
+    <Content Include="Scripts\Login.js" />
+    <Content Include="UrlConfig.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -215,6 +220,7 @@
     <Compile Include="Controllers\CarrosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MateriaisController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

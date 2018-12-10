@@ -29,5 +29,10 @@ namespace BackendCSharpOAuth.Api.Controllers.Base
         {
             return Request.CreateResponse(HttpStatusCode.BadRequest, new { Mensagem = mensagem, Content = conteudo });
         }
+
+        public virtual HttpResponseMessage RetornarSemAutorizacao(string mensagem)
+        {
+            return Request.CreateResponse(HttpStatusCode.Unauthorized, new { Mensagem = mensagem });
+        }
     }
 }
