@@ -14,7 +14,7 @@ namespace BackendCSharpOAuth.Api.Controllers
 
             return View();
 
-            //return Redirect(this.HttpContext.Request.Url + "/index.html");
+            //return Redirect(this.HttpContext.Request.Url + "/login.html");
         }
 
     }
