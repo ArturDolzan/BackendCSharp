@@ -207,6 +207,7 @@
     <Content Include="index.html" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\js.cookie.js" />
     <Content Include="Scripts\Login.js" />
     <Content Include="UrlConfig.js" />

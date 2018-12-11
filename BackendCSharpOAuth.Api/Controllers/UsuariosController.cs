@@ -13,7 +13,7 @@ namespace BackendCSharpOAuth.Api.Controllers
     public class UsuariosController : ControllerResposta
     {
         [HttpPost]
-        public HttpResponseMessage Autenticado(QueryPaginacaoDTO dto)
+        public HttpResponseMessage Autenticado()
         {
             #region IsDebuggingEnabled
             if (HttpContext.Current.IsDebuggingEnabled)

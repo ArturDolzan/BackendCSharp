@@ -11,6 +11,6 @@ namespace BackendCSharpOAuth.Api.Controllers
     {
         public MateriaisController(IServMateriais servMateriais) : base(servMateriais)
         {
-        }      
+        }
     }
 }

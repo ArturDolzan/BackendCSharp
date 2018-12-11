@@ -27,6 +27,26 @@
 
     };
 
-    return true;
+    me.autenticado = function(){
+
+        var bearer = 'Bearer ' + Cookies.get('AppToken');
+
+        $.ajax({
+            type: 'POST',
+            url: Url.config.backEnd + 'api/Usuarios/Autenticado',    
+            headers: {
+                "Authorization": bearer
+            },      
+            success: function (resp) {
+                window.location.href = Url.config.frontEnd;
+            },
+            error: function(resp) {
+                window.location = window.location.href + 'login.html';
+            },
+            dataType: 'json',
+            async: false
+        });
+
+    };
 
 })();
