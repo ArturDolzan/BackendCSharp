@@ -11,7 +11,7 @@ namespace BackendCSharpOAuth.Dominio.Base
 {
     public class ServicoBase<TEntidade> : IServicoBase<TEntidade> where TEntidade: IdentificadorBase
     {
-        private readonly IRepositorioBase<TEntidade> Repositorio;
+        public readonly IRepositorioBase<TEntidade> Repositorio;
 
         public ServicoBase(IRepositorioBase<TEntidade> repositorio)
         {

@@ -12,7 +12,7 @@ namespace BackendCSharpOAuth.Api.Controllers.Base
     #endif
     public class ControllerBase<TEntidade> : ControllerResposta where TEntidade: IdentificadorBase
     {
-        private readonly IServicoBase<TEntidade> Servico;
+        public readonly IServicoBase<TEntidade> Servico;
 
         public ControllerBase(IServicoBase<TEntidade> servico)
         {

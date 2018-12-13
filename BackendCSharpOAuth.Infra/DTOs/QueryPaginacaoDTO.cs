@@ -10,5 +10,7 @@ namespace BackendCSharpOAuth.Infra.DTOs
         public int Page { get; set; }
         public int Start { get; set; }
         public int Limit { get; set; }
+
+        public string Filter { get; set; }
     }
 }
