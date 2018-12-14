@@ -26,10 +26,9 @@ namespace BackendCSharpOAuth.Api.Controllers
         {
             try
             {
-                var ret = _servMateriais.ListarFiltro(dto);
-                var total = Servico.RecuperarTotal();
+                var ret = _servMateriais.ListarFiltro(dto);                
 
-                return RetornarSucesso("Registros recuperados com sucesso!", new { Dados = ret, Total = total });
+                return RetornarSucesso("Registros recuperados com sucesso!", new { Dados = ret, Total = ret.Count });
             }
             catch (System.Exception e)
             {
