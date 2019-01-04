@@ -46,6 +46,21 @@ namespace BackendCSharpOAuth.Api.Controllers.Base
         }
 
         [HttpPost]
+        public virtual HttpResponseMessage RecuperarPorId(CodigoPadraoDTO dto)
+        {
+            try
+            {
+                var ret = Servico.RecuperarPorId(dto);
+
+                return RetornarSucesso("Registro recuperado com sucesso!", new { Dados = ret });
+            }
+            catch (System.Exception e)
+            {
+                return RetornarErro(e.TratarErro());
+            }
+        }
+
+        [HttpPost]
         public virtual HttpResponseMessage Salvar(TEntidade entidade)
         {
             try
