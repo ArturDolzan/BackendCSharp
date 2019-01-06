@@ -12,6 +12,9 @@ using BackendCSharpOAuth.Infra.Extensao;
 
 namespace BackendCSharpOAuth.Api.Controllers
 {
+    #if !DEBUG
+            [Authorize]
+    #endif
     public class UsuariosController : ControllerResposta
     {
         private readonly IServUsuarios _servUsuarios;
