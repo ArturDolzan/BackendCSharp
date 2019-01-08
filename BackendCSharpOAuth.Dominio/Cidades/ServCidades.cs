@@ -1,5 +1,4 @@
 ﻿using BackendCSharpOAuth.Dominio.Base;
-using BackendCSharpOAuth.Infra.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace BackendCSharpOAuth.Dominio
 {
-    public interface IRepCarros : IRepositorioBase<Carros>
+    public class ServCidades : ServicoBase<Cidades>, IServCidades
     {
+        public ServCidades(IRepCidades repositorio)
+            : base(repositorio)
+        {
+        }
     }
 }

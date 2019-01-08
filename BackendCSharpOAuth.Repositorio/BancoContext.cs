@@ -41,10 +41,11 @@ namespace BackendCSharpOAuth.Repositorio
                 modelBuilder.Configurations.Add(mappingClass);
             }*/
 
-            modelBuilder.Configurations.Add(new CarrosConfig());
             modelBuilder.Configurations.Add(new UsuariosConfig());
 
             modelBuilder.Configurations.Add(new MateriaisConfig());
+            modelBuilder.Configurations.Add(new EstadosConfig());
+            modelBuilder.Configurations.Add(new CidadesConfig());
 
             base.OnModelCreating(modelBuilder);  
         }

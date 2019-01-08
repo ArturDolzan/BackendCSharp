@@ -214,7 +214,8 @@
   <ItemGroup>
     <Compile Include="Controllers\Base\ControllerBase.cs" />
     <Compile Include="Controllers\Base\ControllerResposta.cs" />
-    <Compile Include="Controllers\CarrosController.cs" />
+    <Compile Include="Controllers\CidadesController.cs" />
+    <Compile Include="Controllers\EstadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MateriaisController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />

@@ -14,7 +14,7 @@ namespace BackendCSharpOAuth.Dominio
         {
         }
 
-        public List<Materiais> ListarFiltro(QueryPaginacaoDTO dto)
+        public List<Materiais> ListarFiltro(QueryParamsDTO dto)
         {
             return Repositorio.Recuperar().Where(x => x.Descricao.ToUpper().Trim().Contains(dto.Filter.ToUpper().Trim()) ||
                                                       x.Observacao.ToUpper().Trim().Contains(dto.Filter.ToUpper().Trim()) ||

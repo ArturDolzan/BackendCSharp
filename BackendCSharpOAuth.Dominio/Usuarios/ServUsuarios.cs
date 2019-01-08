@@ -42,7 +42,7 @@ namespace BackendCSharpOAuth.Dominio
             return base.Remover(entidade);
         }
 
-        public List<Usuarios> ListarFiltro(QueryPaginacaoDTO dto)
+        public List<Usuarios> ListarFiltro(QueryParamsDTO dto)
         {
             return Repositorio.Recuperar().Where(x => x.Nome.ToUpper().Trim().Contains(dto.Filter.ToUpper().Trim()) )
                                                       .OrderBy(x => x.Id).Skip((dto.Page - 1) * dto.Limit).Take(dto.Limit).ToList();

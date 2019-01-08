@@ -11,14 +11,14 @@ using BackendCSharpOAuth.Infra.Extensao;
 
 namespace BackendCSharpOAuth.Api.Controllers
 {
-    public class MateriaisController : ControllerBase<Materiais>
+    public class EstadosController : ControllerBase<Estados>
     {
-        private readonly IServMateriais _servMateriais;
+        private readonly IServEstados _servEstados;
 
-        public MateriaisController(IServMateriais servMateriais, IServMateriais iservMateriais)
-            : base(servMateriais)
+        public EstadosController(IServEstados servEstados, IServEstados iservEstados)
+            : base(servEstados)
         {
-            _servMateriais = iservMateriais;
+            _servEstados = iservEstados;
         }
 
         [HttpPost]
@@ -26,7 +26,7 @@ namespace BackendCSharpOAuth.Api.Controllers
         {
             try
             {
-                var ret = _servMateriais.ListarFiltro(dto);                
+                var ret = _servEstados.ListarFiltro(dto);
 
                 return RetornarSucesso("Registros recuperados com sucesso!", new { Dados = ret, Total = ret.Count });
             }

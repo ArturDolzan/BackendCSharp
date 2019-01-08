@@ -30,7 +30,7 @@ namespace BackendCSharpOAuth.Api.Controllers.Base
         }
 
         [HttpPost]
-        public virtual HttpResponseMessage Listar(QueryPaginacaoDTO dto)
+        public virtual HttpResponseMessage Listar(QueryParamsDTO dto)
         {
             try
             {

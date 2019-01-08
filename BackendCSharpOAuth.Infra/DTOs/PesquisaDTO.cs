@@ -5,7 +5,7 @@ using System.Web;
 
 namespace BackendCSharpOAuth.Infra.DTOs
 {
-    public class PesquisaDTO : QueryPaginacaoDTO
+    public class PesquisaDTO : QueryParamsDTO
     {
         public string ValorPesquisa { get; set; }
     }

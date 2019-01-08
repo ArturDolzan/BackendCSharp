@@ -29,8 +29,13 @@ namespace BackendCSharpOAuth.Dominio.Base
         }
 
         #region recuperar
-        public virtual List<TEntidade> Listar(QueryPaginacaoDTO dto)
-        {            
+        public virtual List<TEntidade> Listar(QueryParamsDTO dto)
+        {
+            if (dto.Includes != null)
+            {
+                return Repositorio.Recuperar(dto.Includes).OrderBy(x => x.Id).Skip((dto.Page - 1) * dto.Limit).Take(dto.Limit).ToList();    
+            }
+
             return Repositorio.Recuperar().OrderBy(x => x.Id).Skip((dto.Page - 1) * dto.Limit).Take(dto.Limit).ToList();
         }
 

@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace BackendCSharpOAuth.Dominio
 {
-    public interface IServMateriais : IServicoBase<Materiais>
+    public interface IServEstados : IServicoBase<Estados>
     {
-        List<Materiais> ListarFiltro(QueryParamsDTO dto);
+        List<Estados> ListarFiltro(QueryParamsDTO dto);
     }
 }

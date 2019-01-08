@@ -11,6 +11,6 @@ namespace BackendCSharpOAuth.Dominio
     public interface IServUsuarios : IServicoBase<Usuarios>
     {
         Usuarios RecuperarUsuarioParaToken(string usuario, string senha);
-        List<Usuarios> ListarFiltro(QueryPaginacaoDTO dto);
+        List<Usuarios> ListarFiltro(QueryParamsDTO dto);
     }
 }

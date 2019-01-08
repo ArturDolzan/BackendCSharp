@@ -44,7 +44,7 @@ namespace BackendCSharpOAuth.Api.Controllers
         }
 
         [HttpPost]
-        public virtual HttpResponseMessage Listar(QueryPaginacaoDTO dto)
+        public virtual HttpResponseMessage Listar(QueryParamsDTO dto)
         {
             try
             {
@@ -90,7 +90,7 @@ namespace BackendCSharpOAuth.Api.Controllers
         }
 
         [HttpPost]
-        public virtual HttpResponseMessage Filtrar(QueryPaginacaoDTO dto)
+        public virtual HttpResponseMessage Filtrar(QueryParamsDTO dto)
         {
             try
             {

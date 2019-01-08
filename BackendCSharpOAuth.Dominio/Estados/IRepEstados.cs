@@ -1,5 +1,4 @@
 ﻿using BackendCSharpOAuth.Dominio.Base;
-using BackendCSharpOAuth.Infra.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace BackendCSharpOAuth.Dominio
 {
-    public interface IServMateriais : IServicoBase<Materiais>
+    public interface IRepEstados : IRepositorioBase<Estados>
     {
-        List<Materiais> ListarFiltro(QueryParamsDTO dto);
     }
 }
