@@ -10,6 +10,7 @@ namespace BackendCSharpOAuth.Dominio.Base
     {        
         IQueryable<TEntidade> Recuperar();
         IQueryable<TEntidade> RecuperarPorId(int id);
+        IQueryable<TEntidade> RecuperarPorId(int id, string[] includes);
         IQueryable<TEntidade> Recuperar(string[] includes);
 
         TEntidade Salvar(TEntidade entidade);

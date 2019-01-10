@@ -17,7 +17,8 @@ namespace BackendCSharpOAuth.Dominio
 
         public List<Estados> ListarFiltro(QueryParamsDTO dto)
         {
-            return Repositorio.Recuperar().Where(x => x.Nome.ToUpper().Trim().Contains(dto.Filter.ToUpper().Trim()))
+            return Repositorio.Recuperar().Where(x => x.Nome.ToUpper().Trim().Contains(dto.Filter.ToUpper().Trim()) || 
+                                                      x.Sigla.ToUpper().Trim().Contains(dto.Filter.ToUpper().Trim()))
                                                       .OrderBy(x => x.Id).Skip((dto.Page - 1) * dto.Limit).Take(dto.Limit).ToList();
         }
     }

@@ -17,7 +17,12 @@ namespace BackendCSharpOAuth.Repositorio.Base
 
         public virtual IQueryable<TEntidade> RecuperarPorId(int id)
         {
-            return Entidade.AsQueryable<TEntidade>().Where(x=>x.Id == id);
+            return Recuperar().Where(x => x.Id == id);
+        }
+
+        public virtual IQueryable<TEntidade> RecuperarPorId(int id, string[] includes)
+        {
+            return Recuperar(includes).Where(x => x.Id == id);
         }
 
         public virtual IQueryable<TEntidade> Recuperar(string[] includes)

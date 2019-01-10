@@ -105,7 +105,7 @@ namespace BackendCSharpOAuth.Api.Controllers
         }
 
         [HttpPost]
-        public virtual HttpResponseMessage RecuperarPorId(CodigoPadraoDTO dto)
+        public virtual HttpResponseMessage RecuperarPorId(QueryPadraoDTO dto)
         {
             try
             {

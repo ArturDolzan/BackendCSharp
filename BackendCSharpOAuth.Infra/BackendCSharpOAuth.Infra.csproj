@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTOs\CodigoPadraoDTO.cs" />
+    <Compile Include="DTOs\QueryPadraoDTO.cs" />
     <Compile Include="DTOs\PesquisaDTO.cs" />
     <Compile Include="DTOs\QueryParamsDTO.cs" />
     <Compile Include="DTOs\TotalPaginacaoDTO.cs" />

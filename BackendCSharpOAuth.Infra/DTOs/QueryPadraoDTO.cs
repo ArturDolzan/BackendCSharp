@@ -5,8 +5,10 @@ using System.Web;
 
 namespace BackendCSharpOAuth.Infra.DTOs
 {
-    public class CodigoPadraoDTO
+    public class QueryPadraoDTO
     {
         public int Id { get; set; }
+
+        public string[] Includes { get; set; }
     }
 }

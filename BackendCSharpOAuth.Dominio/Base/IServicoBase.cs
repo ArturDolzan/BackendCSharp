@@ -11,7 +11,7 @@ namespace BackendCSharpOAuth.Dominio.Base
     public interface IServicoBase<TEntidade> where TEntidade : IdentificadorBase
     {
         List<TEntidade> Listar(QueryParamsDTO dto);
-        TEntidade RecuperarPorId(CodigoPadraoDTO dto);
+        TEntidade RecuperarPorId(QueryPadraoDTO dto);
         TEntidade Salvar(TEntidade entidade);
         TEntidade Remover(TEntidade entidade);
         int RecuperarTotal();

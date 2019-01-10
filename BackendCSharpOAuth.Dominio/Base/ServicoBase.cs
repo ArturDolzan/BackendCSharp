@@ -44,8 +44,13 @@ namespace BackendCSharpOAuth.Dominio.Base
             return Repositorio.Recuperar().Count();
         }
 
-        public virtual TEntidade RecuperarPorId(CodigoPadraoDTO dto)
+        public virtual TEntidade RecuperarPorId(QueryPadraoDTO dto)
         {
+            if (dto.Includes != null)
+            {
+                return Repositorio.RecuperarPorId(dto.Id, dto.Includes).FirstOrDefault();
+            }
+
             return Repositorio.RecuperarPorId(dto.Id).FirstOrDefault();
         }
         #endregion
