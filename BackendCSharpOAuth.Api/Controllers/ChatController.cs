@@ -23,7 +23,8 @@ namespace BackendCSharpOAuth.Api.Controllers
             try
             {
                 var context = GlobalHost.ConnectionManager.GetHubContext<ChatHub>();
-                context.Clients.All.Publicar("aa", "bb");
+                //context.Clients.All.Publicar("aa", "bb");
+                context.Clients.All.PublicarParaUsuario(new { Usuario= "a", Mensagem = "b" });
 
                 return RetornarSucesso("Ok!");
             }

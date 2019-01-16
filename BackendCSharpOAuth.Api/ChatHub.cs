@@ -69,7 +69,7 @@ namespace BackendCSharpOAuth.Api
 
             foreach (var item in users)
             {
-                Clients.Client(item.ConnectionId).PublicarParaUsuario(message);
+                Clients.Client(item.ConnectionId).PublicarParaUsuario(new { Mensagem = message });
             }           
         }
     
