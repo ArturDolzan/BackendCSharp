@@ -65,9 +65,12 @@ namespace BackendCSharpOAuth.Api
 
         public void EnviarMensagemParaUsuario(string usuarioDestino, string message)
         {
-            var id = UserHandler.RecuperarConnectionIdPorUsuario(usuarioDestino);
+            var users = UserHandler.RecuperarConnectionsIdPorUsuario(usuarioDestino);
 
-            Clients.Client(id).PublicarParaUsuario(message);            
+            foreach (var item in users)
+            {
+                Clients.Client(item.ConnectionId).PublicarParaUsuario(message);
+            }           
         }
     
     }
@@ -96,16 +99,9 @@ namespace BackendCSharpOAuth.Api
             });
         }
 
-        public static string RecuperarConnectionIdPorUsuario(string appUser)
+        public static List<UserIdent> RecuperarConnectionsIdPorUsuario(string appUser)
         {
-            var ret = ConnectedIds.FirstOrDefault(x => x.AppUser == appUser);
-
-            if (ret == null)
-            {
-                return "NaoAutenticado";
-            }
-
-            return ret.ConnectionId;
+            return ConnectedIds.Where(x => x.AppUser == appUser).ToList();
         }
     }
 
