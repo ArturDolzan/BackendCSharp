@@ -26,12 +26,16 @@ namespace BackendCSharpOAuth.Api
                 nome = "NaoAutenticado";
             }
 
+            Clients.All.NotificarUsuarioConectou();
+
             UserHandler.Add(Context.ConnectionId, nome);
             return base.OnConnected();
         }
 
         public override System.Threading.Tasks.Task OnDisconnected(bool stopCalled)
         {
+            Clients.All.NotificarUsuarioDesconectou();
+
             UserHandler.Remove(Context.ConnectionId);
             return base.OnDisconnected(stopCalled);
         }
@@ -53,6 +57,8 @@ namespace BackendCSharpOAuth.Api
             {
                 nome = "NaoAutenticado";
             }
+
+            Clients.All.NotificarUsuarioConectou();
 
             UserHandler.Add(Context.ConnectionId, nome);
             return base.OnReconnected();
