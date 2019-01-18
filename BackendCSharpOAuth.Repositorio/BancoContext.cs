@@ -46,6 +46,7 @@ namespace BackendCSharpOAuth.Repositorio
             modelBuilder.Configurations.Add(new MateriaisConfig());
             modelBuilder.Configurations.Add(new EstadosConfig());
             modelBuilder.Configurations.Add(new CidadesConfig());
+            modelBuilder.Configurations.Add(new ChatConfig());
 
             base.OnModelCreating(modelBuilder);  
         }

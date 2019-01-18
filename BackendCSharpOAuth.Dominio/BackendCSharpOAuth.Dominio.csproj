@@ -61,6 +61,12 @@
     <Compile Include="Materiais\IServMateriais.cs" />
     <Compile Include="Materiais\Materiais.cs" />
     <Compile Include="Materiais\ServMateriais.cs" />
+    <Compile Include="Mensageria\Chat\Chat.cs" />
+    <Compile Include="Mensageria\Chat\DTOs\RecuperarChatCargaDTO.cs" />
+    <Compile Include="Mensageria\Chat\DTOs\RecuperarChatDTO.cs" />
+    <Compile Include="Mensageria\Chat\IRepChat.cs" />
+    <Compile Include="Mensageria\Chat\IServChat.cs" />
+    <Compile Include="Mensageria\Chat\ServChat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Usuarios\IRepUsuarios.cs" />
     <Compile Include="Usuarios\IServUsuarios.cs" />

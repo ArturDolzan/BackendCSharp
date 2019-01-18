@@ -56,6 +56,7 @@
     <Compile Include="BancoContext.cs" />
     <Compile Include="Base\RepositorioBase.cs" />
     <Compile Include="Cidades\RepCidades.cs" />
+    <Compile Include="Configuracao\ChatConfig.cs" />
     <Compile Include="Configuracao\CidadesConfig.cs" />
     <Compile Include="Configuracao\EstadosConfig.cs" />
     <Compile Include="Configuracao\IMapping.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Estados\RepEstados.cs" />
     <Compile Include="Infra\RepBotstrap.cs" />
     <Compile Include="Materiais\RepMateriais.cs" />
+    <Compile Include="Mensageria\Chat\RepChat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Usuarios\RepUsuarios.cs" />
   </ItemGroup>

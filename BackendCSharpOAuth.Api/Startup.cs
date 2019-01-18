@@ -7,6 +7,7 @@ using Owin;
 using System.Net.Http.Headers;
 using BackendCSharpOAuth.IoC;
 using Microsoft.AspNet.SignalR;
+using BackendCSharpOAuth.Dominio;
 
 [assembly: OwinStartup(typeof(BackendCSharpOAuth.Api.Startup))]
 
@@ -47,6 +48,7 @@ namespace BackendCSharpOAuth.Api
             //hub.EnableJSONP = true;
             //app.MapSignalR(hub);  
 
+            //GlobalHost.DependencyResolver.Register(typeof(ChatHub), () => new ChatHub(new Teste()));
             app.Map("/signalr", map =>
             {
                 // Setup the CORS middleware to run before SignalR.

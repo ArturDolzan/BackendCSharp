@@ -31,6 +31,13 @@ namespace BackendCSharpOAuth.Repositorio.Configuracao
             this.Property(x => x.TipoUsuario)
                 .HasColumnName("TipoUsuario")
                 .IsRequired();
+
+            this.Property(x => x.NomeCompleto)
+                .HasColumnName("NomeCompleto")
+                .IsRequired();
+
+            this.Property(x => x.Foto)
+                .HasColumnName("Foto");
         }
     }
 }

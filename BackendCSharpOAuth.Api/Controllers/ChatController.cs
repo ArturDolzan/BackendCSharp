@@ -1,47 +1,30 @@
 ﻿using BackendCSharpOAuth.Api.Controllers.Base;
-using BackendCSharpOAuth.Dominio;
-using BackendCSharpOAuth.Infra.DTOs;
+using BackendCSharpOAuth.Dominio.Mensageria;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using BackendCSharpOAuth.Infra.Extensao;
-using Microsoft.AspNet.SignalR;
 
-namespace BackendCSharpOAuth.Api.Controllers
+namespace BackendCSharpOAuth.Api.Controllers.Mensageria
 {
-   
-    public class ChatController : ControllerResposta
+    public class ChatController : ControllerBase<Chat>
     {
-        
-        [HttpPost]
-        public virtual HttpResponseMessage Postar()
+        public ChatController(IServChat servChat)
+            : base(servChat)
         {
-            try
-            {
-                var context = GlobalHost.ConnectionManager.GetHubContext<ChatHub>();
-                //context.Clients.All.Publicar("aa", "bb");
-                context.Clients.All.PublicarParaUsuario(new { Usuario= "a", Mensagem = "b" });
-
-                return RetornarSucesso("Ok!");
-            }
-            catch (System.Exception e)
-            {
-                return RetornarErro(e.TratarErro());
-            }
         }
 
         [HttpPost]
-        public virtual HttpResponseMessage RecuperarUsuariosConectadosChat()
+        public HttpResponseMessage RecuperarChat(RecuperarChatCargaDTO dto)
         {
             try
             {
-                var ret = UserHandler.ConnectedIds.ToList();
+                var ret = GetServico<IServChat>().RecuperarChat(dto);
 
-                return RetornarSucesso("Usuários chat recuperados com sucesso!", new { Dados = ret });
+                return RetornarSucesso("Registros recuperados com sucesso!", new { Dados = ret});
             }
             catch (System.Exception e)
             {

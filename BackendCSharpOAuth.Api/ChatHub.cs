@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNet.SignalR;
+﻿using BackendCSharpOAuth.Api.Mensageria;
+using BackendCSharpOAuth.Dominio;
+using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,24 +9,10 @@ using System.Web;
 namespace BackendCSharpOAuth.Api
 {
     public class ChatHub: Hub
-    {
+    {        
         public override System.Threading.Tasks.Task OnConnected()
         {
-            string nome;
-            try
-            {
-                nome = Context.Request.Cookies["AppUser"].Value;
-            }
-            catch (Exception)
-            {
-                nome = "NaoAutenticado";
-            }
-            
-
-            if (string.IsNullOrEmpty(nome))
-            {
-                nome = "NaoAutenticado";
-            }
+            var nome = RecuperarUsuarioContextoPorCookie();
 
             Clients.All.NotificarUsuarioConectou();
 
@@ -42,21 +30,7 @@ namespace BackendCSharpOAuth.Api
 
         public override System.Threading.Tasks.Task OnReconnected()
         {
-            string nome;
-            try
-            {
-                nome = Context.Request.Cookies["AppUser"].Value;
-            }
-            catch (Exception)
-            {
-                nome = "NaoAutenticado";
-            }
-
-
-            if (string.IsNullOrEmpty(nome))
-            {
-                nome = "NaoAutenticado";
-            }
+            var nome = RecuperarUsuarioContextoPorCookie();
 
             Clients.All.NotificarUsuarioConectou();
 
@@ -78,43 +52,28 @@ namespace BackendCSharpOAuth.Api
                 Clients.Client(item.ConnectionId).PublicarParaUsuario(new { Mensagem = message });
             }           
         }
-    
-    }
 
-    public static class UserHandler
-    {
-        public static List<UserIdent> ConnectedIds = new List<UserIdent>();
-
-        public static void Remove(string connectionId)
+        public string RecuperarUsuarioContextoPorCookie()
         {
-            var t = ConnectedIds.FirstOrDefault(x => x.ConnectionId == connectionId);
-
-            if (t != null)
+            string nome;
+            try
             {
-                ConnectedIds.Remove(t);
+                nome = Context.Request.Cookies["AppUser"].Value;
             }
-        }
-
-        public static void Add(string connectionId, string appUser)
-        {
-            Remove(connectionId);
-            ConnectedIds.Add(new UserIdent()
+            catch (Exception)
             {
-                AppUser = appUser,
-                ConnectionId = connectionId
-            });
-        }
+                nome = "NaoAutenticado";
+            }
 
-        public static List<UserIdent> RecuperarConnectionsIdPorUsuario(string appUser)
-        {
-            return ConnectedIds.Where(x => x.AppUser == appUser).ToList();
-        }
-    }
 
-    public class UserIdent
-    {
-        public string AppUser { get; set; }
-        public string ConnectionId { get; set; }
+            if (string.IsNullOrEmpty(nome))
+            {
+                nome = "NaoAutenticado";
+            }
+
+            return nome;
+        }
+    
     }
 
 }
