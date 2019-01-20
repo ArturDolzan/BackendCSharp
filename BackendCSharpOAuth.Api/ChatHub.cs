@@ -1,5 +1,7 @@
 ﻿using BackendCSharpOAuth.Api.Mensageria;
 using BackendCSharpOAuth.Dominio;
+using BackendCSharpOAuth.Dominio.Mensageria;
+using BackendCSharpOAuth.Infra;
 using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
@@ -43,14 +45,32 @@ namespace BackendCSharpOAuth.Api
             //Clients.All.Publicar(name, message);
         }
 
-        public void EnviarMensagemParaUsuario(string usuarioDestino, string message)
+        public void EnviarMensagemParaUsuario(string usuarioOrigem, string usuarioDestino, string message)
         {
             var users = UserHandler.RecuperarConnectionsIdPorUsuario(usuarioDestino);
 
+            var servicoChat = ServiceLocatorResolver.Resolve<IServChat>();
+            var chat = servicoChat.EnviarMensagem(new EnviarMensagemCargaDTO()
+            {
+                UsuarioOrigem = usuarioOrigem,
+                UsuarioDestino = usuarioDestino,
+                Mensagem = message
+            });
+
             foreach (var item in users)
             {
-                Clients.Client(item.ConnectionId).PublicarParaUsuario(new { Mensagem = message });
+                Clients.Client(item.ConnectionId).PublicarParaUsuario(chat);
             }           
+        }
+
+        public void EnviarDigitandoMensagem(string usuarioOrigem, string usuarioDestino)
+        {
+            var users = UserHandler.RecuperarConnectionsIdPorUsuario(usuarioDestino);
+            
+            foreach (var item in users)
+            {
+                Clients.Client(item.ConnectionId).EnviarDigitando(usuarioOrigem);
+            }
         }
 
         public string RecuperarUsuarioContextoPorCookie()

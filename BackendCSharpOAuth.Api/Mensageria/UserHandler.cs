@@ -39,5 +39,6 @@ namespace BackendCSharpOAuth.Api.Mensageria
     {
         public string AppUser { get; set; }
         public string ConnectionId { get; set; }
+        public int QtdeMsgNaoVisualizadas { get; set; }
     }
 }

@@ -62,8 +62,10 @@
     <Compile Include="Materiais\Materiais.cs" />
     <Compile Include="Materiais\ServMateriais.cs" />
     <Compile Include="Mensageria\Chat\Chat.cs" />
+    <Compile Include="Mensageria\Chat\DTOs\EnviarMensagemCargaDTO.cs" />
     <Compile Include="Mensageria\Chat\DTOs\RecuperarChatCargaDTO.cs" />
     <Compile Include="Mensageria\Chat\DTOs\RecuperarChatDTO.cs" />
+    <Compile Include="Mensageria\Chat\DTOs\UsuarioChatMarcarVisualizadoDTO.cs" />
     <Compile Include="Mensageria\Chat\IRepChat.cs" />
     <Compile Include="Mensageria\Chat\IServChat.cs" />
     <Compile Include="Mensageria\Chat\ServChat.cs" />

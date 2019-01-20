@@ -11,12 +11,20 @@ using System.Web.Http;
 using BackendCSharpOAuth.Infra.Extensao;
 using Microsoft.AspNet.SignalR;
 using BackendCSharpOAuth.Api.Mensageria;
+using BackendCSharpOAuth.Dominio.Mensageria;
+using BackendCSharpOAuth.Api.Mensageria.DTOs;
 
 namespace BackendCSharpOAuth.Api.Controllers
 {
 
     public class ChatHubController : ControllerResposta
     {
+        private readonly IServChat _servChat;
+
+        public ChatHubController(IServChat servChat)
+        {
+            _servChat = servChat;
+        }
 
         [HttpPost]
         public virtual HttpResponseMessage Postar()
@@ -36,11 +44,16 @@ namespace BackendCSharpOAuth.Api.Controllers
         }
 
         [HttpPost]
-        public virtual HttpResponseMessage RecuperarUsuariosConectadosChat()
+        public virtual HttpResponseMessage RecuperarUsuariosConectadosChat(UsuarioChatLogadoDTO dto)
         {
             try
             {
                 var ret = UserHandler.ConnectedIds.ToList();
+
+                foreach (var item in ret)
+                {
+                    item.QtdeMsgNaoVisualizadas = _servChat.RecuperarMsgPendentesVisualizacao(item.AppUser, dto.Usuario);
+                }
 
                 return RetornarSucesso("Usuários chat recuperados com sucesso!", new { Dados = ret });
             }
@@ -49,5 +62,6 @@ namespace BackendCSharpOAuth.Api.Controllers
                 return RetornarErro(e.TratarErro());
             }
         }
+        
     }
 }
