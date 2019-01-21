@@ -12,5 +12,6 @@ namespace BackendCSharpOAuth.Dominio
     {
         Usuarios RecuperarUsuarioParaToken(string usuario, string senha);
         List<Usuarios> ListarFiltro(QueryParamsDTO dto);
+        Usuarios RecuperarPorUsuario(NomeUsuarioDTO dto);
     }
 }

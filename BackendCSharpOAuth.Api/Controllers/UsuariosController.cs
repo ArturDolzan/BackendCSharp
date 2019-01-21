@@ -60,11 +60,18 @@ namespace BackendCSharpOAuth.Api.Controllers
         }
 
         [HttpPost]
-        public virtual HttpResponseMessage Salvar(Usuarios entidade)
+        public virtual HttpResponseMessage Salvar(UsuariosCargaDTO entidade)
         {
             try
             {
-                var retorno = _servUsuarios.Salvar(entidade);
+                var retorno = _servUsuarios.Salvar(new Usuarios() 
+                { Id = entidade.Id, 
+                  Nome = entidade.Nome, 
+                  NomeCompleto = entidade.NomeCompleto, 
+                  Senha = entidade.Senha, 
+                  TipoUsuario = entidade.TipoUsuario ,
+                  Foto = Convert.FromBase64String(entidade.Foto)
+                });
 
                 return RetornarSucesso("Registro salvo com sucesso!", retorno);
             }
@@ -110,6 +117,21 @@ namespace BackendCSharpOAuth.Api.Controllers
             try
             {
                 var ret = _servUsuarios.RecuperarPorId(dto);
+
+                return RetornarSucesso("Registro recuperado com sucesso!", new { Dados = ret });
+            }
+            catch (System.Exception e)
+            {
+                return RetornarErro(e.TratarErro());
+            }
+        }
+
+        [HttpPost]
+        public virtual HttpResponseMessage RecuperarPorUsuario(NomeUsuarioDTO dto)
+        {
+            try
+            {
+                var ret = _servUsuarios.RecuperarPorUsuario(dto);
 
                 return RetornarSucesso("Registro recuperado com sucesso!", new { Dados = ret });
             }

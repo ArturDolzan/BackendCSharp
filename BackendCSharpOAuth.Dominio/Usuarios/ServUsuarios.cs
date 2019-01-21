@@ -48,5 +48,17 @@ namespace BackendCSharpOAuth.Dominio
                                                       .OrderBy(x => x.Id).Skip((dto.Page - 1) * dto.Limit).Take(dto.Limit).ToList();
         }
 
+        public Usuarios RecuperarPorUsuario(NomeUsuarioDTO dto)
+        {
+            var ret = Repositorio.Recuperar().Where(x => x.Nome.ToUpper().Trim() == dto.Usuario.ToUpper().Trim()).FirstOrDefault();
+
+            if (ret == null)
+            {
+                throw new Exception("Usuário inválido " + dto.Usuario);
+            }
+
+            return ret;
+        }
+
     }
 }
