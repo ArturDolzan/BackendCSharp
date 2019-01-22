@@ -49,6 +49,12 @@ namespace BackendCSharpOAuth.Api.Controllers
             try
             {
                 var ret = _servUsuarios.Listar(dto);
+
+                foreach (var item in ret)
+                {
+                    item.Foto = null;
+                }
+
                 var total = _servUsuarios.RecuperarTotal();
 
                 return RetornarSucesso("Registros recuperados com sucesso!", new { Dados = ret, Total = total });

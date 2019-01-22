@@ -53,6 +53,7 @@ namespace BackendCSharpOAuth.Api.Controllers
                 foreach (var item in ret)
                 {
                     item.QtdeMsgNaoVisualizadas = _servChat.RecuperarMsgPendentesVisualizacao(item.AppUser, dto.Usuario);
+                    //item.Foto = _servChat.RecuperarFotoUsuarioChat(item.AppUser);
                 }
 
                 return RetornarSucesso("Usuários chat recuperados com sucesso!", new { Dados = ret });

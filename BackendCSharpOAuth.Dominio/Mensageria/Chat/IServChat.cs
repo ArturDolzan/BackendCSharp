@@ -14,5 +14,6 @@ namespace BackendCSharpOAuth.Dominio.Mensageria
         RecuperarChatDTO EnviarMensagem(EnviarMensagemCargaDTO dto);
         int RecuperarMsgPendentesVisualizacao(string usuarioOrigem, string usuarioDestino);
         void MarcarMensagensVisualizadas(UsuarioChatMarcarVisualizadoDTO dto);
+        byte[] RecuperarFotoUsuarioChat(string usuario);
     }
 }

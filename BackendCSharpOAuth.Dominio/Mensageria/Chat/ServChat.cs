@@ -10,9 +10,12 @@ namespace BackendCSharpOAuth.Dominio.Mensageria
 {
     class ServChat: ServicoBase<Chat>, IServChat
     {
-        public ServChat(IRepChat repositorio)
+        private readonly IRepUsuarios _repUsuarios;
+
+        public ServChat(IRepChat repositorio, IRepUsuarios repUsuarios)
             : base(repositorio)
         {
+            _repUsuarios = repUsuarios;
         }
 
         public List<RecuperarChatDTO> RecuperarChat(RecuperarChatCargaDTO dto)
@@ -101,6 +104,21 @@ namespace BackendCSharpOAuth.Dominio.Mensageria
 
         }
 
-        
+        public byte[] RecuperarFotoUsuarioChat(string usuario)
+        {
+            var user = _repUsuarios
+                      .Recuperar(new string[] { "AsNoTracking" })
+                      .Where(x => x.Nome == usuario)
+                      .Select(s => new { s.Id, s.Foto })
+                      .FirstOrDefault();
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            return user.Foto;
+        }
+
     }
 }
