@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using BackendCSharpOAuth.Infra.Extensao;
+using System.IO;
+using BackendCSharpOAuth.Api.Mensageria;
 
 namespace BackendCSharpOAuth.Api.Controllers
 {
@@ -70,14 +72,24 @@ namespace BackendCSharpOAuth.Api.Controllers
         {
             try
             {
+                byte[] foto = null;
+
+                if (entidade.Foto != null)
+                {
+                    foto = Convert.FromBase64String(entidade.Foto);
+                }
+
                 var retorno = _servUsuarios.Salvar(new Usuarios() 
                 { Id = entidade.Id, 
                   Nome = entidade.Nome, 
                   NomeCompleto = entidade.NomeCompleto, 
                   Senha = entidade.Senha, 
                   TipoUsuario = entidade.TipoUsuario ,
-                  Foto = Convert.FromBase64String(entidade.Foto)
+                  Foto = foto
                 });
+
+                var diretorioUsuarioHelper = new DiretorioUsuarioHelper();
+                diretorioUsuarioHelper.CriarFotoUsuarioDiretorioTemp(retorno, true);
 
                 return RetornarSucesso("Registro salvo com sucesso!", retorno);
             }
@@ -138,13 +150,17 @@ namespace BackendCSharpOAuth.Api.Controllers
             try
             {
                 var ret = _servUsuarios.RecuperarPorUsuario(dto);
+                
+                var diretorioUsuarioHelper = new DiretorioUsuarioHelper();
+                var user = diretorioUsuarioHelper.CriarFotoUsuarioDiretorioTemp(ret, false);
 
-                return RetornarSucesso("Registro recuperado com sucesso!", new { Dados = ret });
+                return RetornarSucesso("Registro recuperado com sucesso!", new { Dados = user });
             }
             catch (System.Exception e)
             {
                 return RetornarErro(e.TratarErro());
             }
         }
+
     }
 }

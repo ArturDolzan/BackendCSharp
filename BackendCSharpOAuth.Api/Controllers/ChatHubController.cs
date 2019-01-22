@@ -20,40 +20,39 @@ namespace BackendCSharpOAuth.Api.Controllers
     public class ChatHubController : ControllerResposta
     {
         private readonly IServChat _servChat;
+        private readonly IRepUsuarios _repUsuarios;
 
-        public ChatHubController(IServChat servChat)
+        public ChatHubController(IServChat servChat, IRepUsuarios repUsuarios)
         {
             _servChat = servChat;
-        }
-
-        [HttpPost]
-        public virtual HttpResponseMessage Postar()
-        {
-            try
-            {
-                var context = GlobalHost.ConnectionManager.GetHubContext<ChatHub>();
-                //context.Clients.All.Publicar("aa", "bb");
-                context.Clients.All.PublicarParaUsuario(new { Usuario = "a", Mensagem = "b" });
-
-                return RetornarSucesso("Ok!");
-            }
-            catch (System.Exception e)
-            {
-                return RetornarErro(e.TratarErro());
-            }
+            _repUsuarios = repUsuarios;
         }
 
         [HttpPost]
         public virtual HttpResponseMessage RecuperarUsuariosConectadosChat(UsuarioChatLogadoDTO dto)
         {
+            //var context = GlobalHost.ConnectionManager.GetHubContext<ChatHub>();
+            //context.Clients.All.Publicar("aa", "bb");
+            //context.Clients.All.PublicarParaUsuario(new { Usuario = "a", Mensagem = "b" });
             try
             {
                 var ret = UserHandler.ConnectedIds.ToList();
 
                 foreach (var item in ret)
                 {
+
+                    var usuario = _repUsuarios
+                                  .Recuperar(new string[] { "AsNoTracking" })
+                                  .Where(x => x.Nome == item.AppUser)
+                                  .Select(s => new { s.Id, s.Foto })
+                                  .FirstOrDefault();
+
                     item.QtdeMsgNaoVisualizadas = _servChat.RecuperarMsgPendentesVisualizacao(item.AppUser, dto.Usuario);
-                    //item.Foto = _servChat.RecuperarFotoUsuarioChat(item.AppUser);
+
+                    if (usuario.Foto != null)
+                    {
+                        item.Foto = @"\tmp\fotos\" + item.AppUser + ".jpg";    
+                    }                    
                 }
 
                 return RetornarSucesso("Usuários chat recuperados com sucesso!", new { Dados = ret });

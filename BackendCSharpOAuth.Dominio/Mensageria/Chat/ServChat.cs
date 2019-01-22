@@ -31,6 +31,30 @@ namespace BackendCSharpOAuth.Dominio.Mensageria
 
             foreach (var item in ret.OrderBy(x => x.Id))
             {
+                var usuarioOrigem = _repUsuarios
+                                    .Recuperar(new string[] { "AsNoTracking" })
+                                    .Where(x => x.Nome == item.UsuarioOrigem)
+                                    .Select(s => new { s.Id, s.Foto })
+                                    .FirstOrDefault();
+
+                string fotoOrigem = null;
+                if (usuarioOrigem.Foto != null)
+                {
+                    fotoOrigem = @"\tmp\fotos\" + item.UsuarioOrigem + ".jpg";
+                }
+
+                var usuarioDestino = _repUsuarios
+                                    .Recuperar(new string[] { "AsNoTracking" })
+                                    .Where(x => x.Nome == item.UsuarioDestino)
+                                    .Select(s => new { s.Id, s.Foto })
+                                    .FirstOrDefault();
+
+                string fotoDestino = null;
+                if (usuarioDestino.Foto != null)
+                {
+                    fotoDestino = @"\tmp\fotos\" + item.UsuarioDestino + ".jpg";
+                }
+
                 listaChat.Add(new RecuperarChatDTO()
                 {
                     Id = item.Id,
@@ -39,7 +63,8 @@ namespace BackendCSharpOAuth.Dominio.Mensageria
                     DataHora = item.DataHora,
                     Mensagem = item.Mensagem,
                     Visualizado = item.Visualizado,
-                    CaminhoFoto = "assets/user2-160x160.jpg"
+                    FotoOrigem = fotoOrigem,
+                    FotoDestino = fotoDestino
                 });
             }
 
@@ -58,6 +83,19 @@ namespace BackendCSharpOAuth.Dominio.Mensageria
                 Visualizado = EnumChatVisualizado.NaoVisualizado
             });
 
+             var usuario = _repUsuarios
+                            .Recuperar(new string[] { "AsNoTracking" })
+                            .Where(x => x.Nome == ret.UsuarioOrigem)
+                            .Select(s => new { s.Id, s.Foto })
+                            .FirstOrDefault();
+
+             string foto = null;
+
+             if (usuario.Foto != null)
+             {
+                 foto = @"\tmp\fotos\" + ret.UsuarioOrigem + ".jpg";
+             }
+
             return new RecuperarChatDTO()
             {
                 Id = ret.Id,
@@ -66,7 +104,7 @@ namespace BackendCSharpOAuth.Dominio.Mensageria
                 DataHora = ret.DataHora,
                 Mensagem = ret.Mensagem,
                 Visualizado = ret.Visualizado,
-                CaminhoFoto = "assets/user2-160x160.jpg"
+                FotoOrigem = foto
             };
         }
 

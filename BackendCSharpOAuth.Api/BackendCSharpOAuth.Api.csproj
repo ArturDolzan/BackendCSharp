@@ -254,6 +254,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mensageria\DiretorioUsuarioHelper.cs" />
     <Compile Include="Mensageria\DTOs\UsuarioChatLogadoDTO.cs" />
     <Compile Include="Mensageria\UserHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -20,6 +20,8 @@ namespace BackendCSharpOAuth.Dominio.Mensageria
 
         public EnumChatVisualizado Visualizado { get; set; }
 
-        public string CaminhoFoto { get; set; }
+        public string FotoOrigem { get; set; }
+
+        public string FotoDestino { get; set; }
     }
 }

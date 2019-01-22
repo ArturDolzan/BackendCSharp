@@ -29,6 +29,19 @@ namespace BackendCSharpOAuth.Dominio
                 throw new Exception("Usuário do tipo Administrador não pode ser alterado!");
             }
 
+            if (entidade.Id == 0)
+            {
+                var usuarioExistente = Repositorio
+                                       .Recuperar(new string[] { "AsNoTracking" })
+                                       .Where(x => x.Nome == entidade.Nome)
+                                       .FirstOrDefault();
+
+                if (usuarioExistente != null)
+                {
+                    throw new Exception("O usuário " + entidade.Nome + " já existe!");
+                }
+            }
+            
             return base.Salvar(entidade);
         }
 
@@ -50,7 +63,10 @@ namespace BackendCSharpOAuth.Dominio
 
         public Usuarios RecuperarPorUsuario(NomeUsuarioDTO dto)
         {
-            var ret = Repositorio.Recuperar().Where(x => x.Nome.ToUpper().Trim() == dto.Usuario.ToUpper().Trim()).FirstOrDefault();
+            var ret = Repositorio
+                      .Recuperar(new string[] { "AsNoTracking" })
+                      .Where(x => x.Nome.ToUpper().Trim() == dto.Usuario.ToUpper().Trim())
+                      .FirstOrDefault();
 
             if (ret == null)
             {

@@ -8,14 +8,19 @@ using System.Web;
 using System.Web.Http;
 using BackendCSharpOAuth.Infra.Extensao;
 using BackendCSharpOAuth.Api.Mensageria.DTOs;
+using BackendCSharpOAuth.Dominio;
+using BackendCSharpOAuth.Api.Mensageria;
 
 namespace BackendCSharpOAuth.Api.Controllers.Mensageria
 {
     public class ChatController : ControllerBase<Chat>
     {
-        public ChatController(IServChat servChat)
+        private readonly IServUsuarios _servUsuarios;
+
+        public ChatController(IServChat servChat, IServUsuarios servUsuarios)
             : base(servChat)
         {
+            _servUsuarios = servUsuarios;
         }
 
         [HttpPost]
@@ -24,6 +29,17 @@ namespace BackendCSharpOAuth.Api.Controllers.Mensageria
             try
             {
                 var ret = GetServico<IServChat>().RecuperarChat(dto);
+
+                foreach (var item in ret)
+                {
+                    var userDest = _servUsuarios.RecuperarPorUsuario(new NomeUsuarioDTO() { Usuario = item.UsuarioDestino });
+
+                    if (userDest.Foto != null)
+                    {
+                        var diretorioUsuarioHelper = new DiretorioUsuarioHelper();
+                        diretorioUsuarioHelper.CriarFotoUsuarioDiretorioTemp(userDest, false);
+                    }
+                }
 
                 return RetornarSucesso("Registros recuperados com sucesso!", new { Dados = ret});
             }
