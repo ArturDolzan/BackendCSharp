@@ -78,7 +78,7 @@ namespace BackendCSharpOAuth.Api
             {
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromHours(2),
+                AccessTokenExpireTimeSpan = TimeSpan.FromHours(12),
                 Provider = new ProviderDeTokensDeAcesso()
             };
 

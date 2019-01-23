@@ -73,6 +73,16 @@ namespace BackendCSharpOAuth.Api
             }
         }
 
+        public void EnviarVisualizado(string usuarioOrigem, string usuarioDestino)
+        {
+            var users = UserHandler.RecuperarConnectionsIdPorUsuario(usuarioDestino);
+
+            foreach (var item in users)
+            {
+                Clients.Client(item.ConnectionId).EnviarVisualizado(usuarioOrigem);
+            }
+        }
+
         public string RecuperarUsuarioContextoPorCookie()
         {
             string nome;
